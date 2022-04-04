@@ -24,10 +24,10 @@
     <ClInclude Include="shaderprogram.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
-    <ClInclude Include="myCube.h">
+    <ClInclude Include="map\TileFloor.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
-    <ClInclude Include="myTeapot.h">
+    <ClInclude Include="map\TileWall.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
   </ItemGroup>
@@ -35,10 +35,16 @@
     <ClCompile Include="lodepng.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
-    <ClCompile Include="main_file.cpp">
+    <ClCompile Include="shaderprogram.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
-    <ClCompile Include="shaderprogram.cpp">
+    <ClCompile Include="main.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="map\TileFloor.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="map\TileWall.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
   </ItemGroup>
@@ -49,5 +55,37 @@
     <None Include="v_simplest.glsl">
       <Filter>Pliki zasobów</Filter>
     </None>
+    <None Include="f_colored.glsl">
+      <Filter>Pliki zasobów</Filter>
+    </None>
+    <None Include="f_constant.glsl">
+      <Filter>Pliki zasobów</Filter>
+    </None>
+    <None Include="f_lambert.glsl">
+      <Filter>Pliki zasobów</Filter>
+    </None>
+    <None Include="f_textured.glsl">
+      <Filter>Pliki zasobów</Filter>
+    </None>
+    <None Include="v_colored.glsl">
+      <Filter>Pliki zasobów</Filter>
+    </None>
+    <None Include="v_constant.glsl">
+      <Filter>Pliki zasobów</Filter>
+    </None>
+    <None Include="v_lambert.glsl">
+      <Filter>Pliki zasobów</Filter>
+    </None>
+    <None Include="v_textured.glsl">
+      <Filter>Pliki zasobów</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="bricks.png">
+      <Filter>Pliki zasobów</Filter>
+    </Image>
+    <Image Include="stone-wall.png">
+      <Filter>Pliki zasobów</Filter>
+    </Image>
   </ItemGroup>
 </Project>

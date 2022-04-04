@@ -21,10 +21,32 @@
   <ItemGroup>
     <ClInclude Include="constants.h" />
     <ClInclude Include="lodepng.h" />
+    <ClInclude Include="map\TileFloor.h" />
+    <ClInclude Include="map\TileWall.h" />
+    <ClInclude Include="shaderprogram.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="lodepng.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="map\TileFloor.cpp" />
+    <ClCompile Include="map\TileWall.cpp" />
+    <ClCompile Include="shaderprogram.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="bricks.png" />
+    <Image Include="stone-wall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="f_colored.glsl" />
+    <None Include="f_constant.glsl" />
+    <None Include="f_lambert.glsl" />
+    <None Include="f_simplest.glsl" />
+    <None Include="f_textured.glsl" />
+    <None Include="v_colored.glsl" />
+    <None Include="v_constant.glsl" />
+    <None Include="v_lambert.glsl" />
+    <None Include="v_simplest.glsl" />
+    <None Include="v_textured.glsl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
