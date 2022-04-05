@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="C:\Users\krysa\Downloads\OBJ_Loader.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="constants.h" />
     <ClInclude Include="lodepng.h" />
@@ -33,10 +34,6 @@
     <ClCompile Include="map\TileFloor.cpp" />
     <ClCompile Include="map\TileWall.cpp" />
     <ClCompile Include="shaderprogram.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="bricks.png" />
-    <Image Include="stone-wall.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="f_colored.glsl" />

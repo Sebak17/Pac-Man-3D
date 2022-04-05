@@ -67,8 +67,8 @@ void initOpenGLProgram(GLFWwindow* window)
 	glEnable(GL_DEPTH_TEST);
 	glfwSetKeyCallback(window, keyCallback);
 
-	textureWall = readTexture("bricks.png");
-	textureFloor = readTexture("stone-wall.png");
+	textureWall = readTexture("assets/textures/bricks.png");
+	textureFloor = readTexture("assets/textures/stone-wall.png");
 }
 
 
