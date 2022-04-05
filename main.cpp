@@ -14,14 +14,14 @@
 #include "math.h"
 #include "cmath"
 
+#include "Camera.h"
+
 #include "map/TileFloor.h"
 #include "map/TileWall.h"
 
 GLuint textureWall, textureFloor;
 
-// ======= [ TMP ] =============
-float speed_x = 0, speed_y = 0;
-// =============================
+Game::Camera camera;
 
 void error_callback(int error, const char* description)
 {
@@ -32,29 +32,7 @@ void error_callback(int error, const char* description)
 void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
 
-	if (action == GLFW_PRESS) {
-		if (key == GLFW_KEY_LEFT) {
-			speed_y = -PI;
-		}
-		if (key == GLFW_KEY_RIGHT) {
-			speed_y = PI;
-		}
-		if (key == GLFW_KEY_UP) {
-			speed_x = -PI;
-		}
-		if (key == GLFW_KEY_DOWN) {
-			speed_x = PI;
-		}
-	}
-	if (action == GLFW_RELEASE) {
-		if (key == GLFW_KEY_LEFT || key == GLFW_KEY_RIGHT) {
-			speed_y = 0;
-		}
-		if (key == GLFW_KEY_UP || key == GLFW_KEY_DOWN) {
-			speed_x = 0;
-		}
-	}
-
+	camera.move(key, action);
 
 }
 
@@ -102,19 +80,17 @@ void freeOpenGLProgram(GLFWwindow* window)
 	glDeleteTextures(2, &textureFloor);
 }
 
-
-void drawScene(GLFWwindow* window, float angle_x, float angle_y)
+void drawScene(GLFWwindow* window, float deltaTime)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	glm::mat4 V = glm::lookAt(glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	camera.update();
 
 
+	glm::mat4 V = camera.getV();
 
+	glm::mat4 P = glm::perspective(glm::radians(50.0f), 2.0f, 0.1f, 50.0f);
 
-	glm::mat4 P = glm::perspective(glm::radians(50.0f), 2.0f, 1.0f, 50.0f);
-
-	P = glm::rotate(P, angle_y, glm::vec3(0.0f, 1.0f, 0.0f));
 
 
 	spTextured->use();
@@ -122,12 +98,7 @@ void drawScene(GLFWwindow* window, float angle_x, float angle_y)
 	glUniformMatrix4fv(spTextured->u("V"), 1, false, glm::value_ptr(V));
 
 
-
-
-
-
 	glm::mat4 M_1 = glm::mat4(1.0f);
-
 
 	M_1 = glm::translate(M_1, glm::vec3(-10.0f, 0.0f, -10.0f));
 
@@ -198,16 +169,14 @@ int main(void)
 
 	glfwSetTime(0);
 
-	float angle_x = 0, angle_y = 0;
-
 	while (!glfwWindowShouldClose(window))
 	{
-		angle_x += speed_x * glfwGetTime() * 2;
-		angle_y += speed_y * glfwGetTime() / 1.25;
+
+		float deltaTime = glfwGetTime();
 
         glfwSetTime(0);
 
-		drawScene(window, angle_x, angle_y);
+		drawScene(window, deltaTime);
 
 		glfwPollEvents();
 	}

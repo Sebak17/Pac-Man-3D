@@ -14,8 +14,6 @@ namespace Map {
 	using namespace std;
 	using namespace glm;
 
-
-
 	namespace TileWallInternal {
 		extern float vertices[];
 		extern float texCoords[];

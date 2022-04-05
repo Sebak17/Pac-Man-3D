@@ -1,4 +1,3 @@
-
 #include "TileWall.h"
 
 namespace Map {

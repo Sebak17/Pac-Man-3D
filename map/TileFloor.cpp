@@ -1,4 +1,3 @@
-
 #include "TileFloor.h"
 
 namespace Map {
