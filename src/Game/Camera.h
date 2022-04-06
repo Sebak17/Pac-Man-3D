@@ -6,6 +6,7 @@
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtx/string_cast.hpp>
 #include <vector>
 #include "../constants.h"
 
@@ -26,11 +27,13 @@ namespace Game {
 			float currentYaw			= 0.0f;
 			float currentPitch			= 0.0f;
 
+			void tmpCheckCollisions(glm::vec3& newPos, glm::vec3& pos);
+
 		public:
 			Camera();
 			virtual ~Camera();
 
-			glm::vec3 pos		= glm::vec3(0.0f, 0.0f, 1.0f);
+			glm::vec3 pos		= glm::vec3(0.0f, 0.0f, 0.0f);
 			glm::vec3 DirFront	= glm::vec3(0.0f, 0.0f, 1.0f);
 			glm::vec3 DirUp		= glm::vec3(0.0f, 1.0f, 0.0f);
 

@@ -24,9 +24,16 @@ namespace Game {
 		newFront.z = cos(glm::radians(currentPitch)) * sin(glm::radians(currentYaw));
 		DirFront = glm::normalize(newFront);
 
-		pos += currentSpeedMove * DirFront;
+		vec3 newPos = pos + (currentSpeedMove * DirFront);
+
+		this->tmpCheckCollisions(newPos, pos);
+
+		pos = newPos;
 
 		currentYaw += currentSpeedRotate;
+
+
+		//printf("M: %s\n", glm::to_string(pos).c_str());
 	}
 
 	void Camera::move(int key, int action)
@@ -55,7 +62,25 @@ namespace Game {
 			}
 		}
 
+	}
 
+	void Camera::tmpCheckCollisions(glm::vec3& newPos, glm::vec3& pos)
+	{
+		if (newPos.x <= -0.85f) {
+			newPos.x = pos.x;
+		}
+
+		if (newPos.z <= -0.85f) {
+			newPos.z = pos.z;
+		}
+
+		if (newPos.x >= 18.85f) {
+			newPos.x = pos.x;
+		}
+
+		if (newPos.z >= 18.85f) {
+			newPos.z = pos.z;
+		}
 	}
 
 }
