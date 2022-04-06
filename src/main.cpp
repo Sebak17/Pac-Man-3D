@@ -27,6 +27,9 @@ GLuint textureWall, textureFloor;
 Game::Loader gameLoader;
 Game::Camera camera;
 
+std::vector<Map::TileFloor> floors;
+std::vector<Map::TileWall> walls;
+
 std::vector<Entity::Ghost> ghosts;
 
 void error_callback(int error, const char* description)
@@ -61,8 +64,44 @@ void initOpenGLProgram(GLFWwindow* window)
 
 
 	for (int i = 0; i < 3; i++) {
-		Entity::Ghost ghost(textureFloor, glm::vec3(i * 8.0f, 0.0f, 0.0f));
+		Entity::Ghost ghost(textureFloor, glm::vec3(i * 8.9f, 0.0f, 0.0f));
 		ghosts.push_back(ghost);
+	}
+
+	
+
+	for (int i = 0; i < 10; i++) {
+		Map::TileFloor floor(textureFloor, glm::vec3(i * 2.0f, 0.0f, 0.0f));
+		floors.push_back(floor);
+	}
+
+	for (int x = 0; x < 10; x++) {
+		for (int z = 0; z < 10; z++) {
+			Map::TileFloor floor(textureFloor, glm::vec3(x * 2.0f, 0.0f, z * 2.0f));
+			floors.push_back(floor);
+		}
+	}
+
+
+	for (int x = 0; x < 10; x++) {
+		Map::TileWall wall(textureWall, glm::vec3(x * 2.0f, 0.0f, 0.0f), Map::WallDirection::WEST);
+		walls.push_back(wall);
+	}
+
+
+	for (int z = 0; z < 10; z++) {
+		Map::TileWall wall(textureWall, glm::vec3(18.0f, 0.0f, z * 2.0f), Map::WallDirection::NORTH);
+		walls.push_back(wall);
+	}
+
+	for (int x = 0; x < 10; x++) {
+		Map::TileWall wall(textureWall, glm::vec3(x * 2.0f, 0.0f, 18.0f), Map::WallDirection::EAST);
+		walls.push_back(wall);
+	}
+
+	for (int z = 0; z < 10; z++) {
+		Map::TileWall wall(textureWall, glm::vec3(0, 0.0f, z * 2.0f), Map::WallDirection::SOUTH);
+		walls.push_back(wall);
 	}
 
 }
@@ -80,8 +119,8 @@ void update(float deltaTime)
 {
 	camera.update();
 
-	for (int i = 0; i < 3; i++) {
-		ghosts[i].move(deltaTime);
+	for (auto& ghost : ghosts) {
+		ghost.move(deltaTime);
 	}
 
 }
@@ -97,8 +136,6 @@ void drawScene(GLFWwindow* window)
 	glm::mat4 M = glm::mat4(1.0f);
 
 
-
-
 	glm::mat4 M_1 = glm::translate(M, glm::vec3(-10.0f, 0.0f, -10.0f));
 	
 	
@@ -106,11 +143,27 @@ void drawScene(GLFWwindow* window)
 	glUniformMatrix4fv(spLambert->u("P"), 1, false, glm::value_ptr(P));
 	glUniformMatrix4fv(spLambert->u("V"), 1, false, glm::value_ptr(V));
 
-	for (int i = 0; i < 3; i++) {
-		ghosts[i].draw(spLambert, M_1);
+	for (auto& ghost : ghosts) {
+		ghost.draw(spLambert, M);
+	}
+
+
+
+	spTextured->use();
+	glUniformMatrix4fv(spTextured->u("P"), 1, false, glm::value_ptr(P));
+	glUniformMatrix4fv(spTextured->u("V"), 1, false, glm::value_ptr(V));
+
+	for (auto& floor : floors) {
+		floor.draw(spTextured, M);
+	}
+
+	for (auto& wall : walls) {
+		wall.draw(spTextured, M);
 	}
 	
 
+
+	/*
 	spTextured->use();
 	glUniformMatrix4fv(spTextured->u("P"), 1, false, glm::value_ptr(P));
 	glUniformMatrix4fv(spTextured->u("V"), 1, false, glm::value_ptr(V));
@@ -139,6 +192,7 @@ void drawScene(GLFWwindow* window)
 
 		M_1 = glm::translate(M_1, glm::vec3(10 * -2.0f, 0.0f, 2.0f));
 	}
+	*/
 
 
     glfwSwapBuffers(window);

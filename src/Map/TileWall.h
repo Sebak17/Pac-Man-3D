@@ -2,23 +2,24 @@
 #ifndef TILE_WALL_H
 #define TILE_WALL_H
 
-#include <GL/glew.h>
-#include <vector>
 #include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
-#include "../constants.h"
 #include "../shaderprogram.h"
+#include "../constants.h"
 
 namespace Map {
 
 	using namespace std;
 	using namespace glm;
 
-	namespace TileWallInternal {
-		extern float vertices[];
-		extern float texCoords[];
-		extern unsigned int vertexCount;
-	}
+	enum WallDirection {
+		NORTH = 1,
+		EAST = 2,
+		SOUTH = 3,
+		WEST = 0,
+	};
 
 	class TileWall {
 		public:
@@ -26,14 +27,23 @@ namespace Map {
 			float* vertices;
 			float* texCoords;
 
-			TileWall();
+			TileWall(GLuint texture, glm::vec3 position, WallDirection wallDirection);
 			virtual ~TileWall();
 
-			virtual void draw(GLuint texture);
+			virtual void draw(ShaderProgram* shaderProgram, glm::mat4 M);
+
+		private:
+			GLuint texture;
+
+			glm::vec3 position;
+			WallDirection wallDirection;
 	};
 
-	extern TileWall tileWall;
-
+	namespace TileWallInternal {
+		extern float vertices[];
+		extern float texCoords[];
+		extern unsigned int vertexCount;
+	}
 
 }
 

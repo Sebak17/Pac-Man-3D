@@ -2,9 +2,11 @@
 
 namespace Map {
 
-	TileFloor tileFloor;
+	TileFloor::TileFloor(GLuint texture, glm::vec3 position)
+	{
+		this->texture = texture;
+		this->position = position;
 
-	TileFloor::TileFloor() {
 		vertices = TileFloorInternal::vertices;
 		texCoords = TileFloorInternal::texCoords;
 		vertexCount = TileFloorInternal::vertexCount;
@@ -14,20 +16,24 @@ namespace Map {
 	{
 	}
 
-	void TileFloor::draw(GLuint texture)
+	void TileFloor::draw(ShaderProgram* shaderProgram, glm::mat4 M)
 	{
-		glEnableVertexAttribArray(spTextured->a("vertex"));
-		glVertexAttribPointer(spTextured->a("vertex"), 4, GL_FLOAT, false, 0, vertices);
+		M = glm::translate(M, this->position);
 
-		glEnableVertexAttribArray(spTextured->a("texCoord"));
-		glVertexAttribPointer(spTextured->a("texCoord"), 2, GL_FLOAT, false, 0, texCoords);
+		glUniformMatrix4fv(shaderProgram->u("M"), 1, false, glm::value_ptr(M));
+
+		glEnableVertexAttribArray(shaderProgram->a("vertex"));
+		glVertexAttribPointer(shaderProgram->a("vertex"), 4, GL_FLOAT, false, 0, vertices);
+
+		glEnableVertexAttribArray(shaderProgram->a("texCoord"));
+		glVertexAttribPointer(shaderProgram->a("texCoord"), 2, GL_FLOAT, false, 0, texCoords);
 
 		glActiveTexture(GL_TEXTURE0); glBindTexture(GL_TEXTURE_2D, texture);
-		glUniform1i(spTextured->u("tex"), 0);
+		glUniform1i(shaderProgram->u("tex"), 0);
 
 		glDrawArrays(GL_TRIANGLES, 0, vertexCount);
 
-		glDisableVertexAttribArray(spTextured->a("vertex"));
+		glDisableVertexAttribArray(shaderProgram->a("vertex"));
 	}
 
 
@@ -54,7 +60,6 @@ namespace Map {
 			0.0f, 1.0f,
 			1.0f, 1.0f,
 		};
-
 
 	}
 
