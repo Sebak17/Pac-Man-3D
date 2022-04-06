@@ -19,20 +19,23 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="C:\Users\krysa\Downloads\OBJ_Loader.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="constants.h" />
+    <ClInclude Include="entity\Ghost.h" />
     <ClInclude Include="lodepng.h" />
     <ClInclude Include="map\TileFloor.h" />
     <ClInclude Include="map\TileWall.h" />
+    <ClInclude Include="models\ModelGhost.h" />
     <ClInclude Include="shaderprogram.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="entity\Ghost.cpp" />
     <ClCompile Include="lodepng.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="map\TileFloor.cpp" />
     <ClCompile Include="map\TileWall.cpp" />
+    <ClCompile Include="models\ModelGhost.cpp" />
     <ClCompile Include="shaderprogram.cpp" />
   </ItemGroup>
   <ItemGroup>

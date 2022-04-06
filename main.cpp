@@ -19,9 +19,13 @@
 #include "map/TileFloor.h"
 #include "map/TileWall.h"
 
+#include "entity/Ghost.h"
+
 GLuint textureWall, textureFloor;
 
 Game::Camera camera;
+
+Entity::Ghost* ghost1;
 
 void error_callback(int error, const char* description)
 {
@@ -31,9 +35,7 @@ void error_callback(int error, const char* description)
 
 void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
-
 	camera.move(key, action);
-
 }
 
 GLuint readTexture(const char* filename) {
@@ -69,6 +71,12 @@ void initOpenGLProgram(GLFWwindow* window)
 
 	textureWall = readTexture("assets/textures/bricks.png");
 	textureFloor = readTexture("assets/textures/stone-wall.png");
+
+
+
+
+	ghost1 = new Entity::Ghost(textureFloor, glm::mat4(1.0f));
+
 }
 
 
@@ -93,18 +101,25 @@ void drawScene(GLFWwindow* window, float deltaTime)
 
 
 
-	spTextured->use();
-	glUniformMatrix4fv(spTextured->u("P"), 1, false, glm::value_ptr(P));
-	glUniformMatrix4fv(spTextured->u("V"), 1, false, glm::value_ptr(V));
+	
 
 
 	glm::mat4 M_1 = glm::mat4(1.0f);
 
 	M_1 = glm::translate(M_1, glm::vec3(-10.0f, 0.0f, -10.0f));
 
-
-
+	ghost1->move(deltaTime);
 	
+	spLambert->use();
+	glUniformMatrix4fv(spLambert->u("P"), 1, false, glm::value_ptr(P));
+	glUniformMatrix4fv(spLambert->u("V"), 1, false, glm::value_ptr(V));
+
+	ghost1->draw(spLambert);
+	
+
+	spTextured->use();
+	glUniformMatrix4fv(spTextured->u("P"), 1, false, glm::value_ptr(P));
+	glUniformMatrix4fv(spTextured->u("V"), 1, false, glm::value_ptr(V));
 
 	for (int x = 0; x < 10; x++) {
 
@@ -171,8 +186,7 @@ int main(void)
 
 	while (!glfwWindowShouldClose(window))
 	{
-
-		float deltaTime = glfwGetTime();
+		float deltaTime = (float) glfwGetTime();
 
         glfwSetTime(0);
 
