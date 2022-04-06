@@ -19,36 +19,40 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Camera.h" />
-    <ClInclude Include="constants.h" />
-    <ClInclude Include="entity\Ghost.h" />
-    <ClInclude Include="lodepng.h" />
-    <ClInclude Include="map\TileFloor.h" />
-    <ClInclude Include="map\TileWall.h" />
-    <ClInclude Include="models\ModelGhost.h" />
-    <ClInclude Include="shaderprogram.h" />
+    <ClInclude Include="libs\json.hpp" />
+    <ClInclude Include="libs\lodepng.h" />
+    <ClInclude Include="src\constants.h" />
+    <ClInclude Include="src\Entity\Ghost.h" />
+    <ClInclude Include="src\Game\Camera.h" />
+    <ClInclude Include="src\Game\Loader.h" />
+    <ClInclude Include="src\Map\TileFloor.h" />
+    <ClInclude Include="src\Map\TileWall.h" />
+    <ClInclude Include="src\Model\ModelGhost.h" />
+    <ClInclude Include="src\shaderprogram.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="entity\Ghost.cpp" />
-    <ClCompile Include="lodepng.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="map\TileFloor.cpp" />
-    <ClCompile Include="map\TileWall.cpp" />
-    <ClCompile Include="models\ModelGhost.cpp" />
-    <ClCompile Include="shaderprogram.cpp" />
+    <ClCompile Include="libs\lodepng.cpp" />
+    <ClCompile Include="src\Entity\Ghost.cpp" />
+    <ClCompile Include="src\Game\Camera.cpp" />
+    <ClCompile Include="src\Game\Loader.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Map\TileFloor.cpp" />
+    <ClCompile Include="src\Map\TileWall.cpp" />
+    <ClCompile Include="src\Model\ModelGhost.cpp" />
+    <ClCompile Include="src\shaderprogram.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="f_colored.glsl" />
-    <None Include="f_constant.glsl" />
-    <None Include="f_lambert.glsl" />
-    <None Include="f_simplest.glsl" />
-    <None Include="f_textured.glsl" />
-    <None Include="v_colored.glsl" />
-    <None Include="v_constant.glsl" />
-    <None Include="v_lambert.glsl" />
-    <None Include="v_simplest.glsl" />
-    <None Include="v_textured.glsl" />
+    <None Include="assets\game.json" />
+    <None Include="shaders\f_colored.glsl" />
+    <None Include="shaders\f_constant.glsl" />
+    <None Include="shaders\f_lambert.glsl" />
+    <None Include="shaders\f_simplest.glsl" />
+    <None Include="shaders\f_textured.glsl" />
+    <None Include="shaders\v_colored.glsl" />
+    <None Include="shaders\v_constant.glsl" />
+    <None Include="shaders\v_lambert.glsl" />
+    <None Include="shaders\v_simplest.glsl" />
+    <None Include="shaders\v_textured.glsl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

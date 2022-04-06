@@ -1,0 +1,27 @@
+{
+	"ghosts": [
+		{
+			"position": {
+				"x": 1.0,
+				"z": 1.0
+			}
+		}
+	],
+	"coins": [
+		{
+			"position": {
+				"x": 1.0,
+				"z": 1.0
+			}
+		}
+	],
+	"map": [
+		{
+			"type": "wall/floor/ceiling",
+			"position": {
+				"x": 1.0,
+				"z": 1.0
+			}
+		}
+	]
+}

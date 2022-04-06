@@ -9,92 +9,134 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
+    <Filter Include="Pliki nagłówkowe\Map">
+      <UniqueIdentifier>{5f3767ec-d2be-44a8-a003-081412437282}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Pliki zasobów">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Pliki źródłowe\Map">
+      <UniqueIdentifier>{df5f872c-6ec1-4497-a3f2-daaf2d2601c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\Game">
+      <UniqueIdentifier>{cee77d84-47ee-4af2-a694-b6e184585a03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\Libraries">
+      <UniqueIdentifier>{e5e5deea-960a-437a-8996-bdd0bec1546d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\Libraries">
+      <UniqueIdentifier>{8c5ef744-3ae3-406b-8f75-53393ba46492}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\Game">
+      <UniqueIdentifier>{199c30c1-1a06-4218-8fb6-de6903f4dece}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\Model">
+      <UniqueIdentifier>{b375bd75-6397-4151-aad3-3b3936ee5a30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\Model">
+      <UniqueIdentifier>{4aae606d-2891-451d-adaa-63ea03c42310}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\Entity">
+      <UniqueIdentifier>{b514646a-36c4-4fd9-adbc-9076fe27ef84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\Entity">
+      <UniqueIdentifier>{0bf4f2d7-ae49-4f8a-ab9b-261ec0364471}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="constants.h">
+    <ClInclude Include="src\Model\ModelGhost.h">
+      <Filter>Pliki nagłówkowe\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Game\Camera.h">
+      <Filter>Pliki nagłówkowe\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Game\Loader.h">
+      <Filter>Pliki nagłówkowe\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\json.hpp">
+      <Filter>Pliki nagłówkowe\Libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entity\Ghost.h">
+      <Filter>Pliki nagłówkowe\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\lodepng.h">
+      <Filter>Pliki nagłówkowe\Libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="src\shaderprogram.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
-    <ClInclude Include="lodepng.h">
+    <ClInclude Include="src\constants.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
-    <ClInclude Include="shaderprogram.h">
-      <Filter>Pliki nagłówkowe</Filter>
+    <ClInclude Include="src\Map\TileFloor.h">
+      <Filter>Pliki nagłówkowe\Map</Filter>
     </ClInclude>
-    <ClInclude Include="map\TileFloor.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="map\TileWall.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="entity\Ghost.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="models\ModelGhost.h">
-      <Filter>Pliki nagłówkowe</Filter>
+    <ClInclude Include="src\Map\TileWall.h">
+      <Filter>Pliki nagłówkowe\Map</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="lodepng.cpp">
+    <ClCompile Include="src\Game\Camera.cpp">
+      <Filter>Pliki źródłowe\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game\Loader.cpp">
+      <Filter>Pliki źródłowe\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
-    <ClCompile Include="shaderprogram.cpp">
+    <ClCompile Include="src\Model\ModelGhost.cpp">
+      <Filter>Pliki źródłowe\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entity\Ghost.cpp">
+      <Filter>Pliki źródłowe\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\lodepng.cpp">
+      <Filter>Pliki źródłowe\Libraries</Filter>
+    </ClCompile>
+    <ClCompile Include="src\shaderprogram.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Pliki źródłowe</Filter>
+    <ClCompile Include="src\Map\TileWall.cpp">
+      <Filter>Pliki źródłowe\Map</Filter>
     </ClCompile>
-    <ClCompile Include="map\TileFloor.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
-    <ClCompile Include="map\TileWall.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
-    <ClCompile Include="entity\Ghost.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
-    <ClCompile Include="models\ModelGhost.cpp">
-      <Filter>Pliki źródłowe</Filter>
+    <ClCompile Include="src\Map\TileFloor.cpp">
+      <Filter>Pliki źródłowe\Map</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="f_simplest.glsl">
+    <None Include="shaders\f_colored.glsl">
       <Filter>Pliki zasobów</Filter>
     </None>
-    <None Include="v_simplest.glsl">
+    <None Include="shaders\f_constant.glsl">
       <Filter>Pliki zasobów</Filter>
     </None>
-    <None Include="f_colored.glsl">
+    <None Include="shaders\f_lambert.glsl">
       <Filter>Pliki zasobów</Filter>
     </None>
-    <None Include="f_constant.glsl">
+    <None Include="shaders\f_simplest.glsl">
       <Filter>Pliki zasobów</Filter>
     </None>
-    <None Include="f_lambert.glsl">
+    <None Include="shaders\f_textured.glsl">
       <Filter>Pliki zasobów</Filter>
     </None>
-    <None Include="f_textured.glsl">
+    <None Include="shaders\v_colored.glsl">
       <Filter>Pliki zasobów</Filter>
     </None>
-    <None Include="v_colored.glsl">
+    <None Include="shaders\v_constant.glsl">
       <Filter>Pliki zasobów</Filter>
     </None>
-    <None Include="v_constant.glsl">
+    <None Include="shaders\v_lambert.glsl">
       <Filter>Pliki zasobów</Filter>
     </None>
-    <None Include="v_lambert.glsl">
+    <None Include="shaders\v_simplest.glsl">
       <Filter>Pliki zasobów</Filter>
     </None>
-    <None Include="v_textured.glsl">
+    <None Include="shaders\v_textured.glsl">
+      <Filter>Pliki zasobów</Filter>
+    </None>
+    <None Include="assets\game.json">
       <Filter>Pliki zasobów</Filter>
     </None>
   </ItemGroup>
