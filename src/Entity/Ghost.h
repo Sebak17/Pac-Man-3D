@@ -26,16 +26,16 @@ namespace Entity {
 	class Ghost {
 
 		public:
-			Ghost(GLuint texture, glm::vec3 position);
+			Ghost(glm::vec3 position);
 			virtual ~Ghost();
 
 			virtual void draw(ShaderProgram* shaderProgram, glm::mat4 M);
 			virtual void move(float deltaTime);
 
 		private:
-			GLuint texture;
-
 			Direction currentDirection = NORTH;
+
+			float tmpYMove = 0.003f;
 
 			glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f);
 			glm::vec3 rotate = glm::vec3(0.0f, 0.0f, 0.0f);

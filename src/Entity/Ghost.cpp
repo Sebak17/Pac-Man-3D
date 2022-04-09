@@ -2,10 +2,8 @@
 
 namespace Entity {
 
-	Ghost::Ghost(GLuint texture, glm::vec3 position)
+	Ghost::Ghost(glm::vec3 position)
 	{
-		this->texture = texture;
-
 		this->position = position;
 	}
 
@@ -44,6 +42,7 @@ namespace Entity {
 			currentDirection = NORTH;
 		}
 
+		
 		if (currentDirection == NORTH) {
 			position.z += speed;
 		} else {
@@ -51,6 +50,17 @@ namespace Entity {
 		}
 
 		rotate.y = fmodf(rotate.y + speed * 100, 360);
+
+
+
+
+		if (tmpYMove > 0 && this->position.y >= 0.3) {
+			tmpYMove *= -1;
+		} else if (tmpYMove < 0 && this->position.y <= 0.0) {
+			tmpYMove *= -1;
+		}
+		position.y += tmpYMove;
+
 	}
 
 	glm::mat4 Ghost::getPosition(glm::mat4 M)
