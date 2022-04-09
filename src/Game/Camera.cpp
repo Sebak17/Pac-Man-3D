@@ -64,15 +64,13 @@ namespace Game {
 
 	void Camera::checkWallsCollisions(glm::vec3& newPos, glm::vec3& prevPos)
 	{
-		Map::TileWall wall = this->mapData.walls[40];
-		
 		
 		for (auto& wall : mapData.walls) {
 
 			if (wall.wallDirection == Map::WallDirection::NORTH) {
 
 				float dX = abs((wall.position.x + 1) - newPos.x);
-				if ((newPos.z >= (wall.position.z - 1) && newPos.z <= (wall.position.z + 1)) && dX <= 0.2) {
+				if ((newPos.z >= (wall.position.z - 1) && newPos.z <= (wall.position.z + 1)) && dX <= 0.25) {
 					newPos.x = prevPos.x;
 					break;
 				}
@@ -82,7 +80,7 @@ namespace Game {
 			if (wall.wallDirection == Map::WallDirection::SOUTH) {
 
 				float dX = abs((wall.position.x - 1) - newPos.x);
-				if ((newPos.z >= (wall.position.z - 1) && newPos.z <= (wall.position.z + 1)) && dX <= 0.25) {
+				if ((newPos.z >= (wall.position.z - 1) && newPos.z <= (wall.position.z + 1)) && dX <= 0.3) {
 					newPos.x = prevPos.x;
 					break;
 				}
@@ -97,7 +95,7 @@ namespace Game {
 			if (wall.wallDirection == Map::WallDirection::WEST) {
 
 				float dZ = abs((wall.position.z - 1) - newPos.z);
-				if ((newPos.x >= (wall.position.x - 1) && newPos.x <= (wall.position.x + 1)) && dZ <= 0.2) {
+				if ((newPos.x >= (wall.position.x - 1) && newPos.x <= (wall.position.x + 1)) && dZ <= 0.25) {
 					newPos.z = prevPos.z;
 					break;
 				}
@@ -107,7 +105,7 @@ namespace Game {
 			if (wall.wallDirection == Map::WallDirection::EAST) {
 
 				float dZ = abs((wall.position.z + 1) - newPos.z);
-				if ((newPos.x >= (wall.position.x - 1) && newPos.x <= (wall.position.x + 1)) && dZ <= 0.2) {
+				if ((newPos.x >= (wall.position.x - 1) && newPos.x <= (wall.position.x + 1)) && dZ <= 0.25) {
 					newPos.z = prevPos.z;
 					break;
 				}
@@ -116,8 +114,6 @@ namespace Game {
 
 
 		}
-
-		
 
 	}
 
