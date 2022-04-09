@@ -11,6 +11,9 @@
 #include "../shaderprogram.h"
 #include "../Model/ModelGhost.h"
 
+#include <stdlib.h>
+#include <time.h>
+
 namespace Entity {
 
 	enum Direction {
@@ -18,6 +21,7 @@ namespace Entity {
 		EAST = 0,
 		SOUTH = 3,
 		WEST = 2,
+		NONE = -1,
 	};
 
 	using namespace std;
@@ -33,14 +37,19 @@ namespace Entity {
 			virtual void move(float deltaTime);
 
 		private:
-			Direction currentDirection = EAST;
+			Direction curDirection = NORTH;
+			Direction dstDirection = NONE;
+
+			glm::vec3 curPosition = glm::vec3(0.0f, 0.0f, 0.0f);
+			glm::vec3 dstPosition = glm::vec3(0.0f, 0.0f, 0.0f);
+
+			glm::vec3 rotate = glm::vec3(0.0f, 90.0f, 0.0f);
 
 			float tmpYMove = 0.003f;
 
-			glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f);
-			glm::vec3 rotate = glm::vec3(0.0f, 0.0f, 0.0f);
-
 			glm::mat4 getPosition(glm::mat4 M);
+
+			glm::vec3 findNextPosition();
 			
 	};
 

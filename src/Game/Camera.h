@@ -19,7 +19,7 @@ namespace Game {
 	using namespace glm;
 
 	const float MAX_SPEED_POS = PI / 30;
-	const float MAX_SPEED_YAW = PI / 2;
+	const float MAX_SPEED_YAW = PI / 2 * 1.5;
 
 	class Camera {
 		private:

@@ -4,7 +4,10 @@ namespace Entity {
 
 	Ghost::Ghost(glm::vec3 position)
 	{
-		this->position = position;
+		this->curPosition = position;
+		this->dstPosition = position;
+
+		srand(time(NULL));
 	}
 
 	Ghost::~Ghost()
@@ -34,56 +37,66 @@ namespace Entity {
 
 	void Ghost::move(float deltaTime)
 	{
-		float speed = 2.5 * deltaTime;
+		float speed = 1.5 * deltaTime;
 
-
-		if (currentDirection == NORTH && (position.x >= 18.0f)) {
-			currentDirection = WEST;
-		}
-		else if (currentDirection == EAST && (position.z >= 18.0f)) {
-			currentDirection = NORTH;
-		}
-		else if (currentDirection == SOUTH && (position.x <= 0.0f)) {
-			currentDirection = EAST;
-		}
-		else if (currentDirection == WEST && (position.z <= 0.0f)) {
-			currentDirection = SOUTH;
+		if (curPosition.x == dstPosition.x && curPosition.z == dstPosition.z) {
+			dstPosition = this->findNextPosition();
 		}
 
+		if (curDirection != dstDirection) {
+		
+			rotate.y += deltaTime * 100;
+			rotate.y = fmodf(rotate.y, 360);
 
-		if (currentDirection == NORTH) {
-			position.x += speed;
-			if (position.x > 18.0f) position.x = 18.0f;
+			float dstAngle = dstDirection * 90.0f;
+			if (rotate.y > (dstAngle - 3.0) && rotate.y < (dstAngle + 3.0)) {
+				rotate.y = dstAngle;
+				curDirection = dstDirection;
+			}
+
 		}
-		else if (currentDirection == EAST) {
-			position.z += speed;
-			if (position.z > 18.0f) position.z = 18.0f;
+		else {
+
+			if (dstPosition.x > curPosition.x) {
+
+				curPosition.x += speed;
+				if (curPosition.x > dstPosition.x) curPosition.x = dstPosition.x;
+
+			}
+			else if (dstPosition.x < curPosition.x) {
+
+				curPosition.x -= speed;
+				if (curPosition.x < dstPosition.x) curPosition.x = dstPosition.x;
+
+			}
+			else if (dstPosition.z > curPosition.z) {
+
+				curPosition.z += speed;
+				if (curPosition.z > dstPosition.z) curPosition.z = dstPosition.z;
+
+			}
+			else if (dstPosition.z < curPosition.z) {
+
+				curPosition.z -= speed;
+				if (curPosition.z < dstPosition.z) curPosition.z = dstPosition.z;
+
+			}
+
 		}
-		else if (currentDirection == SOUTH) {
-			position.x -= speed;
-			if (position.x < 0.0f) position.z = 0.0f;
-		}
-		else if (currentDirection == WEST) {
-			position.z -= speed;
-			if (position.z < 0.0f) position.z = 0.0f;
-		}
+		
 
-
-		rotate.y = currentDirection * 90.0f;
-
-
-		if (tmpYMove > 0 && this->position.y >= 0.3) {
+		if (tmpYMove > 0 && this->curPosition.y >= 0.3) {
 			tmpYMove *= -1;
-		} else if (tmpYMove < 0 && this->position.y <= 0.0) {
+		} else if (tmpYMove < 0 && this->curPosition.y <= 0.0) {
 			tmpYMove *= -1;
 		}
-		position.y += tmpYMove;
+		curPosition.y += tmpYMove;
 
 	}
 
 	glm::mat4 Ghost::getPosition(glm::mat4 M)
 	{
-		M = glm::translate(M, this->position);
+		M = glm::translate(M, this->curPosition);
 
 
 		if (this->rotate.x != 0) {
@@ -100,6 +113,35 @@ namespace Entity {
 		M = glm::scale(M, glm::vec3(1.5f, 1.5f, 1.5f));
 
 		return M;
+	}
+
+	glm::vec3 Ghost::findNextPosition()
+	{
+		// TODO: add checking walls
+		int i = rand() % 4 + 1;
+
+		switch (i)
+		{
+			case 1:
+				dstDirection = NORTH;
+				return glm::vec3(this->curPosition.x + 2, 0.0f, this->curPosition.z);
+
+			case 2:
+				dstDirection = SOUTH;
+				return glm::vec3(this->curPosition.x - 2, 0.0f, this->curPosition.z);
+
+			case 3:
+				dstDirection = EAST;
+				return glm::vec3(this->curPosition.x, 0.0f, this->curPosition.z + 2);
+
+			case 4:
+				dstDirection = WEST;
+				return glm::vec3(this->curPosition.x, 0.0f, this->curPosition.z - 2);
+
+		}
+
+
+		
 	}
 
 }
