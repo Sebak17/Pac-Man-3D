@@ -61,6 +61,24 @@ namespace Game {
 			Map::TileWall wall(textureWall, glm::vec3(mapWallPosX * 2.0f, 0.0f, mapWallPosZ * 2.0f), wallDirection);
 			mapData.walls.push_back(wall);
 
+
+			if (wallDirection == Map::WallDirection::NORTH) {
+				Map::TileWall wall2(textureWall, glm::vec3((mapWallPosX + 1) * 2.0f, 0.0f, mapWallPosZ * 2.0f), Map::WallDirection::SOUTH);
+				mapData.walls.push_back(wall2);
+			}
+			else if (wallDirection == Map::WallDirection::EAST) {
+				Map::TileWall wall2(textureWall, glm::vec3(mapWallPosX * 2.0f, 0.0f, (mapWallPosZ + 1) * 2.0f), Map::WallDirection::WEST);
+				mapData.walls.push_back(wall2);
+			}
+			else if (wallDirection == Map::WallDirection::SOUTH) {
+				Map::TileWall wall2(textureWall, glm::vec3((mapWallPosX - 1) * 2.0f, 0.0f, mapWallPosZ * 2.0f), Map::WallDirection::NORTH);
+				mapData.walls.push_back(wall2);
+			}
+			else if (wallDirection == Map::WallDirection::WEST) {
+				Map::TileWall wall2(textureWall, glm::vec3(mapWallPosX * 2.0f, 0.0f, (mapWallPosZ - 1) * 2.0f), Map::WallDirection::EAST);
+				mapData.walls.push_back(wall2);
+			}
+
 		}
 		// --------------------------------------------------------------
 		

@@ -40,18 +40,8 @@
 			},
 			{
 				"x": 1,
-				"z": 1,
-				"direction": "south"
-			},
-			{
-				"x": 1,
 				"z": 0,
 				"direction": "east"
-			},
-			{
-				"x": 1,
-				"z": 1,
-				"direction": "west"
 			},
 			{
 				"x": 8,
@@ -59,19 +49,9 @@
 				"direction": "north"
 			},
 			{
-				"x": 9,
-				"z": 1,
-				"direction": "south"
-			},
-			{
 				"x": 8,
 				"z": 0,
 				"direction": "east"
-			},
-			{
-				"x": 8,
-				"z": 1,
-				"direction": "west"
 			}
 		]
 	}
