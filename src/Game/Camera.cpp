@@ -52,10 +52,10 @@ namespace Game {
 			}
 		}
 		if (action == GLFW_RELEASE) {
-			if (key == GLFW_KEY_LEFT || key == GLFW_KEY_RIGHT) {
+			if ((key == GLFW_KEY_LEFT && currentSpeedRotate == -MAX_SPEED_YAW) || (key == GLFW_KEY_RIGHT && currentSpeedRotate == MAX_SPEED_YAW)) {
 				currentSpeedRotate = 0;
 			}
-			if (key == GLFW_KEY_UP || key == GLFW_KEY_DOWN) {
+			if ((key == GLFW_KEY_UP && currentSpeedMove == MAX_SPEED_POS) || (key == GLFW_KEY_DOWN && currentSpeedMove == -MAX_SPEED_POS)) {
 				currentSpeedMove = 0;
 			}
 		}

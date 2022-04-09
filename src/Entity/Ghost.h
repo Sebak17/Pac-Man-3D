@@ -14,10 +14,10 @@
 namespace Entity {
 
 	enum Direction {
-		NORTH,
-		EAST,
-		SOUTH,
-		WEST,
+		NORTH = 1,
+		EAST = 0,
+		SOUTH = 3,
+		WEST = 2,
 	};
 
 	using namespace std;
@@ -33,7 +33,7 @@ namespace Entity {
 			virtual void move(float deltaTime);
 
 		private:
-			Direction currentDirection = NORTH;
+			Direction currentDirection = EAST;
 
 			float tmpYMove = 0.003f;
 

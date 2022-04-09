@@ -34,24 +34,42 @@ namespace Entity {
 
 	void Ghost::move(float deltaTime)
 	{
-		float speed = 2 * deltaTime;
+		float speed = 2.5 * deltaTime;
 
-		if (currentDirection == NORTH && position.z >= 18.0f) {
-			currentDirection = SOUTH;
-		} else if(currentDirection == SOUTH && position.z <= 0.0f) {
+
+		if (currentDirection == NORTH && (position.x >= 18.0f)) {
+			currentDirection = WEST;
+		}
+		else if (currentDirection == EAST && (position.z >= 18.0f)) {
 			currentDirection = NORTH;
 		}
-
-		
-		if (currentDirection == NORTH) {
-			position.z += speed;
-		} else {
-			position.z += -speed;
+		else if (currentDirection == SOUTH && (position.x <= 0.0f)) {
+			currentDirection = EAST;
+		}
+		else if (currentDirection == WEST && (position.z <= 0.0f)) {
+			currentDirection = SOUTH;
 		}
 
-		rotate.y = fmodf(rotate.y + speed * 100, 360);
+
+		if (currentDirection == NORTH) {
+			position.x += speed;
+			if (position.x > 18.0f) position.x = 18.0f;
+		}
+		else if (currentDirection == EAST) {
+			position.z += speed;
+			if (position.z > 18.0f) position.z = 18.0f;
+		}
+		else if (currentDirection == SOUTH) {
+			position.x -= speed;
+			if (position.x < 0.0f) position.z = 0.0f;
+		}
+		else if (currentDirection == WEST) {
+			position.z -= speed;
+			if (position.z < 0.0f) position.z = 0.0f;
+		}
 
 
+		rotate.y = currentDirection * 90.0f;
 
 
 		if (tmpYMove > 0 && this->position.y >= 0.3) {
@@ -79,7 +97,7 @@ namespace Entity {
 		}
 
 
-		M = glm::scale(M, glm::vec3(2.0f, 2.0f, 2.0f));
+		M = glm::scale(M, glm::vec3(1.5f, 1.5f, 1.5f));
 
 		return M;
 	}
