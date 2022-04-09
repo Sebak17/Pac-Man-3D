@@ -113,13 +113,26 @@ namespace Game {
 		// --------------------------[ GHOSTS ]--------------------------
 		auto ghostsElements = gameData.find("ghosts");
 
-		for (const auto& ghostsElement : ghostsElements.value().items())
+		for (const auto& ghostElement : ghostsElements.value().items())
 		{
-			float ghostPosX = std::stof(ghostsElement.value()["position"]["x"].dump());
-			float ghostPosZ = std::stof(ghostsElement.value()["position"]["z"].dump());
+			float ghostPosX = std::stof(ghostElement.value()["position"]["x"].dump());
+			float ghostPosZ = std::stof(ghostElement.value()["position"]["z"].dump());
 
 			Entity::Ghost ghost(glm::vec3(ghostPosX * 2.0f, 0.0f, ghostPosZ * 2.0f));
 			mapData.ghosts.push_back(ghost);
+		}
+		// --------------------------------------------------------------
+
+		// ---------------------------[ COINS ]--------------------------
+		auto coinsElements = gameData.find("coins");
+
+		for (const auto& coinElement : coinsElements.value().items())
+		{
+			float coinPosX = std::stof(coinElement.value()["position"]["x"].dump());
+			float coinPosZ = std::stof(coinElement.value()["position"]["z"].dump());
+
+			Entity::Coin coin(glm::vec3(coinPosX * 2.0f, -0.55f, coinPosZ * 2.0f));
+			mapData.coins.push_back(coin);
 		}
 		// --------------------------------------------------------------
 

@@ -71,6 +71,10 @@ void update(float deltaTime)
 		ghost.move(deltaTime);
 	}
 	
+	for (auto& coin : mapData.coins) {
+		coin.update(deltaTime);
+	}
+
 }
 
 
@@ -94,6 +98,11 @@ void drawScene(GLFWwindow* window)
 	for (auto& ghost : mapData.ghosts) {
 		ghost.draw(spLambert, M);
 	}
+
+	for (auto& coin : mapData.coins) {
+		coin.draw(spLambert, M);
+	}
+
 
 	spTextured->use();
 	glUniformMatrix4fv(spTextured->u("P"), 1, false, glm::value_ptr(P));

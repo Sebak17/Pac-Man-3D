@@ -102,31 +102,4 @@ namespace Entity {
 		return M;
 	}
 
-	namespace TileWallInternal {
-
-		unsigned int vertexCount = 6;
-
-		float vertices[] = {
-			1.0f,-1.0f,-1.0f,1.0f,
-			-1.0f,1.0f,-1.0f,1.0f,
-			-1.0f,-1.0f,-1.0f,1.0f,
-
-			1.0f,-1.0f,-1.0f,1.0f,
-			-1.0f,1.0f,-1.0f,1.0f,
-			1.0f,1.0f,-1.0f,1.0f,
-		};
-
-		float texCoords[] = {
-			1.0f, 0.0f,
-			0.0f, 1.0f,
-			0.0f, 0.0f,
-
-			1.0f, 0.0f,
-			0.0f, 1.0f,
-			1.0f, 1.0f,
-		};
-
-
-	}
-
 }

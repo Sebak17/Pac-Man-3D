@@ -75,6 +75,12 @@
     <ClInclude Include="src\Map\TileWall.h">
       <Filter>Pliki nagłówkowe\Map</Filter>
     </ClInclude>
+    <ClInclude Include="src\Model\ModelCoin.h">
+      <Filter>Pliki nagłówkowe\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entity\Coin.h">
+      <Filter>Pliki nagłówkowe\Entity</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Game\Camera.cpp">
@@ -103,6 +109,12 @@
     </ClCompile>
     <ClCompile Include="src\Map\TileFloor.cpp">
       <Filter>Pliki źródłowe\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Model\ModelCoin.cpp">
+      <Filter>Pliki źródłowe\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entity\Coin.cpp">
+      <Filter>Pliki źródłowe\Entity</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

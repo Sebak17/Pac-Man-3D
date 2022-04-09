@@ -1,6 +1,6 @@
 
-#ifndef GHOST_H
-#define GHOST_H
+#ifndef COIN_H
+#define COIN_H
 
 #include <GL/glew.h>
 #include <vector>
@@ -9,34 +9,23 @@
 #include <GLFW/glfw3.h>
 #include "../constants.h"
 #include "../shaderprogram.h"
-#include "../Model/ModelGhost.h"
+#include "../Model/ModelCoin.h"
 
 namespace Entity {
-
-	enum Direction {
-		NORTH = 1,
-		EAST = 0,
-		SOUTH = 3,
-		WEST = 2,
-	};
 
 	using namespace std;
 	using namespace glm;
 
-	class Ghost {
+	class Coin {
 
 		public:
-			Ghost(glm::vec3 position);
-			virtual ~Ghost();
+			Coin(glm::vec3 position);
+			virtual ~Coin();
 
 			virtual void draw(ShaderProgram* shaderProgram, glm::mat4 M);
-			virtual void move(float deltaTime);
+			virtual void update(float deltaTime);
 
 		private:
-			Direction currentDirection = EAST;
-
-			float tmpYMove = 0.003f;
-
 			glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f);
 			glm::vec3 rotate = glm::vec3(0.0f, 0.0f, 0.0f);
 

@@ -65,6 +65,8 @@ namespace Game {
 	void Camera::checkWallsCollisions(glm::vec3& newPos, glm::vec3& prevPos)
 	{
 		
+		// TODO: add collisions with sides of wall
+
 		for (auto& wall : mapData.walls) {
 
 			if (wall.wallDirection == Map::WallDirection::NORTH) {

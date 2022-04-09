@@ -15,6 +15,7 @@
 #include "../Map/TileFloor.h"
 #include "../Map/TileWall.h"
 #include "../Entity/Ghost.h"
+#include "../Entity/Coin.h"
 
 namespace Game {
 
@@ -30,6 +31,7 @@ namespace Game {
 		std::vector<Map::TileWall> walls;
 
 		std::vector<Entity::Ghost> ghosts;
+		std::vector<Entity::Coin> coins;
 	};
 
 	class Loader {
