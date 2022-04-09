@@ -2,8 +2,9 @@
 
 namespace Game {
 	
-	Camera::Camera() {
-
+	Camera::Camera(MapData& mapData) : mapData(mapData)
+	{
+		
 	}
 
 	Camera::~Camera()
@@ -26,14 +27,11 @@ namespace Game {
 
 		vec3 newPos = pos + (currentSpeedMove * DirFront);
 
-		this->tmpCheckCollisions(newPos, pos);
+		this->checkWallsCollisions(newPos, pos);
 
-		pos = newPos;
+		this->pos = newPos;
 
 		currentYaw += currentSpeedRotate;
-
-
-		//printf("M: %s\n", glm::to_string(pos).c_str());
 	}
 
 	void Camera::move(int key, int action)
@@ -64,23 +62,63 @@ namespace Game {
 
 	}
 
-	void Camera::tmpCheckCollisions(glm::vec3& newPos, glm::vec3& pos)
+	void Camera::checkWallsCollisions(glm::vec3& newPos, glm::vec3& prevPos)
 	{
-		if (newPos.x <= -0.85f) {
-			newPos.x = pos.x;
+		Map::TileWall wall = this->mapData.walls[40];
+		
+		
+		for (auto& wall : mapData.walls) {
+
+			if (wall.wallDirection == Map::WallDirection::NORTH) {
+
+				float dX = abs((wall.position.x + 1) - newPos.x);
+				if ((newPos.z >= (wall.position.z - 1) && newPos.z <= (wall.position.z + 1)) && dX <= 0.2) {
+					newPos.x = prevPos.x;
+					break;
+				}
+
+			}
+
+			if (wall.wallDirection == Map::WallDirection::SOUTH) {
+
+				float dX = abs((wall.position.x - 1) - newPos.x);
+				if ((newPos.z >= (wall.position.z - 1) && newPos.z <= (wall.position.z + 1)) && dX <= 0.25) {
+					newPos.x = prevPos.x;
+					break;
+				}
+
+			}
+
+
 		}
 
-		if (newPos.z <= -0.85f) {
-			newPos.z = pos.z;
+		for (auto& wall : mapData.walls) {
+
+			if (wall.wallDirection == Map::WallDirection::WEST) {
+
+				float dZ = abs((wall.position.z - 1) - newPos.z);
+				if ((newPos.x >= (wall.position.x - 1) && newPos.x <= (wall.position.x + 1)) && dZ <= 0.2) {
+					newPos.z = prevPos.z;
+					break;
+				}
+
+			}
+
+			if (wall.wallDirection == Map::WallDirection::EAST) {
+
+				float dZ = abs((wall.position.z + 1) - newPos.z);
+				if ((newPos.x >= (wall.position.x - 1) && newPos.x <= (wall.position.x + 1)) && dZ <= 0.2) {
+					newPos.z = prevPos.z;
+					break;
+				}
+
+			}
+
+
 		}
 
-		if (newPos.x >= 18.85f) {
-			newPos.x = pos.x;
-		}
+		
 
-		if (newPos.z >= 18.85f) {
-			newPos.z = pos.z;
-		}
 	}
 
 }

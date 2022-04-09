@@ -8,7 +8,10 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/string_cast.hpp>
 #include <vector>
+#include <algorithm>
+
 #include "../constants.h"
+#include "Loader.h"
 
 namespace Game {
 
@@ -20,17 +23,17 @@ namespace Game {
 
 	class Camera {
 		private:
-			glm::mat4 V;
+			MapData& mapData;
 
 			float currentSpeedRotate	= 0.0f;
 			float currentSpeedMove		= 0.0f;
 			float currentYaw			= 0.0f;
 			float currentPitch			= 0.0f;
 
-			void tmpCheckCollisions(glm::vec3& newPos, glm::vec3& pos);
+			void checkWallsCollisions(glm::vec3& newPos, glm::vec3& pos);
 
 		public:
-			Camera();
+			Camera(MapData& mapData);
 			virtual ~Camera();
 
 			glm::vec3 pos		= glm::vec3(0.0f, 0.0f, 0.0f);

@@ -17,11 +17,10 @@
 #include "Game/Loader.h"
 #include "Game/Camera.h"
 
+Game::MapData mapData;
 
 Game::Loader gameLoader;
-Game::Camera camera;
-
-Game::MapData mapData;
+Game::Camera camera(mapData);
 
 void error_callback(int error, const char* description)
 {
@@ -71,7 +70,7 @@ void update(float deltaTime)
 	for (auto& ghost : mapData.ghosts) {
 		ghost.move(deltaTime);
 	}
-
+	
 }
 
 

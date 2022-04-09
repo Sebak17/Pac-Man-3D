@@ -27,6 +27,9 @@ namespace Map {
 			float* vertices;
 			float* texCoords;
 
+			glm::vec3 position;
+			WallDirection wallDirection;
+
 			TileWall(GLuint texture, glm::vec3 position, WallDirection wallDirection);
 			virtual ~TileWall();
 
@@ -34,9 +37,7 @@ namespace Map {
 
 		private:
 			GLuint texture;
-
-			glm::vec3 position;
-			WallDirection wallDirection;
+			
 	};
 
 	namespace TileWallInternal {
