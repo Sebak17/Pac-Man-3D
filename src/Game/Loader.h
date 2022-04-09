@@ -12,10 +12,13 @@
 #include "libs/json.hpp"
 #include "libs/lodepng.h"
 
+#include "../Map/MapManager.h"
+
 #include "../Map/TileFloor.h"
 #include "../Map/TileWall.h"
 #include "../Entity/Ghost.h"
 #include "../Entity/Coin.h"
+
 
 namespace Game {
 
@@ -24,19 +27,13 @@ namespace Game {
 	using json = nlohmann::json;
 
 	struct MapData {
-		int sizeX;
-		int sizeZ;
-
-		std::vector<Map::TileFloor> floors;
-		std::vector<Map::TileWall> walls;
-
 		std::vector<Entity::Ghost> ghosts;
 		std::vector<Entity::Coin> coins;
 	};
 
 	class Loader {
 		public:
-			Loader();
+			Loader(Map::MapManager& mapManager);
 			virtual ~Loader();
 
 			void loadTextures();
@@ -47,6 +44,8 @@ namespace Game {
 			GLuint readTexture(const char* filename);
 
 		private:
+			Map::MapManager& mapManager;
+
 			GLuint textureWall, textureFloor;
 	};
 

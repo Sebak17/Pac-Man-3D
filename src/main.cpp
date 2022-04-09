@@ -14,13 +14,19 @@
 #include "math.h"
 #include "cmath"
 
+#include "Map/MapManager.h"
+#include "Game/GameManager.h"
+
 #include "Game/Loader.h"
 #include "Game/Camera.h"
 
 Game::MapData mapData;
 
-Game::Loader gameLoader;
-Game::Camera camera(mapData);
+Map::MapManager mapManager;
+Game::GameManager gameManager;
+
+Game::Loader gameLoader(mapManager);
+Game::Camera camera(mapManager);
 
 void error_callback(int error, const char* description)
 {
@@ -108,11 +114,11 @@ void drawScene(GLFWwindow* window)
 	glUniformMatrix4fv(spTextured->u("P"), 1, false, glm::value_ptr(P));
 	glUniformMatrix4fv(spTextured->u("V"), 1, false, glm::value_ptr(V));
 
-	for (auto& floor : mapData.floors) {
+	for (auto& floor : mapManager.floors) {
 		floor.draw(spTextured, M);
 	}
 
-	for (auto& wall : mapData.walls) {
+	for (auto& wall : mapManager.walls) {
 		wall.draw(spTextured, M);
 	}
 

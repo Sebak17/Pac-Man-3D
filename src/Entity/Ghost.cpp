@@ -2,7 +2,7 @@
 
 namespace Entity {
 
-	Ghost::Ghost(glm::vec3 position)
+	Ghost::Ghost(glm::vec3 position, Map::MapManager& mapManager) : mapManager(mapManager)
 	{
 		this->curPosition = position;
 		this->dstPosition = position;
@@ -117,25 +117,61 @@ namespace Entity {
 
 	glm::vec3 Ghost::findNextPosition()
 	{
-		// TODO: add checking walls
-		int i = rand() % 4 + 1;
+		vector<int> directionAvailable;
+		directionAvailable.push_back(Map::WallDirection::NORTH);
+		directionAvailable.push_back(Map::WallDirection::EAST);
+		directionAvailable.push_back(Map::WallDirection::SOUTH);
+		directionAvailable.push_back(Map::WallDirection::WEST);
 
-		switch (i)
+		int blockedDir;
+		if (this->curDirection == Direction::NORTH) {
+			blockedDir = Map::WallDirection::SOUTH;
+		}
+		else if (this->curDirection == Direction::EAST) {
+			blockedDir = Map::WallDirection::WEST;
+		}
+		else if (this->curDirection == Direction::SOUTH) {
+			blockedDir = Map::WallDirection::NORTH;
+		}
+		else if (this->curDirection == Direction::WEST) {
+			blockedDir = Map::WallDirection::EAST;
+		}
+
+		directionAvailable.erase(std::remove(directionAvailable.begin(), directionAvailable.end(), blockedDir), directionAvailable.end());
+
+		for (auto& wall : mapManager.walls) {
+			if (wall.position.x != this->curPosition.x || wall.position.z != this->curPosition.z) {
+				continue;
+			}
+
+			directionAvailable.erase(std::remove(directionAvailable.begin(), directionAvailable.end(), wall.wallDirection), directionAvailable.end());
+		}
+
+		if (directionAvailable.size() == 0) {
+			printf("Ghost found a path problem! X: %f Z: %f\n", this->curPosition.x, this->curPosition.z);
+			this->curDirection = Direction::NONE;
+			this->dstDirection = Direction::NONE;
+			return glm::vec3(this->curPosition.x, 0.0f, this->curPosition.z);
+		}
+
+		int newDirPos = directionAvailable[rand() % directionAvailable.size()];
+
+		switch (newDirPos)
 		{
 			case 1:
-				dstDirection = NORTH;
+				dstDirection = Direction::NORTH;
 				return glm::vec3(this->curPosition.x + 2, 0.0f, this->curPosition.z);
 
-			case 2:
-				dstDirection = SOUTH;
+			case 3:
+				dstDirection = Direction::SOUTH;
 				return glm::vec3(this->curPosition.x - 2, 0.0f, this->curPosition.z);
 
-			case 3:
-				dstDirection = EAST;
+			case 2:
+				dstDirection = Direction::EAST;
 				return glm::vec3(this->curPosition.x, 0.0f, this->curPosition.z + 2);
 
-			case 4:
-				dstDirection = WEST;
+			case 0:
+				dstDirection = Direction::WEST;
 				return glm::vec3(this->curPosition.x, 0.0f, this->curPosition.z - 2);
 
 		}

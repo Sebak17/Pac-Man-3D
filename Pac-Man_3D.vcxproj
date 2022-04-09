@@ -26,6 +26,7 @@
     <ClInclude Include="src\Entity\Ghost.h" />
     <ClInclude Include="src\Game\Camera.h" />
     <ClInclude Include="src\Game\Loader.h" />
+    <ClInclude Include="src\Map\MapManager.h" />
     <ClInclude Include="src\Map\TileFloor.h" />
     <ClInclude Include="src\Map\TileWall.h" />
     <ClInclude Include="src\Model\ModelCoin.h" />
@@ -39,6 +40,7 @@
     <ClCompile Include="src\Game\Camera.cpp" />
     <ClCompile Include="src\Game\Loader.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Map\MapManager.cpp" />
     <ClCompile Include="src\Map\TileFloor.cpp" />
     <ClCompile Include="src\Map\TileWall.cpp" />
     <ClCompile Include="src\Model\ModelCoin.cpp" />

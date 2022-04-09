@@ -2,7 +2,7 @@
 
 namespace Game {
 
-	Loader::Loader()
+	Loader::Loader(Map::MapManager& mapManager): mapManager(mapManager)
 	{
 	}
 
@@ -32,8 +32,8 @@ namespace Game {
 
 		auto mapDataInfo = gameData.find("map");
 		
-		mapData.sizeX = std::stoi(mapDataInfo.value()["size"]["x"].dump());
-		mapData.sizeZ = std::stoi(mapDataInfo.value()["size"]["z"].dump());
+		mapManager.sizeX = std::stoi(mapDataInfo.value()["size"]["x"].dump());
+		mapManager.sizeZ = std::stoi(mapDataInfo.value()["size"]["z"].dump());
 
 
 		// ---------------------------[ WALLS ]--------------------------
@@ -59,24 +59,24 @@ namespace Game {
 			}
 
 			Map::TileWall wall(textureWall, glm::vec3(mapWallPosX * 2.0f, 0.0f, mapWallPosZ * 2.0f), wallDirection);
-			mapData.walls.push_back(wall);
+			mapManager.walls.push_back(wall);
 
 
 			if (wallDirection == Map::WallDirection::NORTH) {
 				Map::TileWall wall2(textureWall, glm::vec3((mapWallPosX + 1) * 2.0f, 0.0f, mapWallPosZ * 2.0f), Map::WallDirection::SOUTH);
-				mapData.walls.push_back(wall2);
+				mapManager.walls.push_back(wall2);
 			}
 			else if (wallDirection == Map::WallDirection::EAST) {
 				Map::TileWall wall2(textureWall, glm::vec3(mapWallPosX * 2.0f, 0.0f, (mapWallPosZ + 1) * 2.0f), Map::WallDirection::WEST);
-				mapData.walls.push_back(wall2);
+				mapManager.walls.push_back(wall2);
 			}
 			else if (wallDirection == Map::WallDirection::SOUTH) {
 				Map::TileWall wall2(textureWall, glm::vec3((mapWallPosX - 1) * 2.0f, 0.0f, mapWallPosZ * 2.0f), Map::WallDirection::NORTH);
-				mapData.walls.push_back(wall2);
+				mapManager.walls.push_back(wall2);
 			}
 			else if (wallDirection == Map::WallDirection::WEST) {
 				Map::TileWall wall2(textureWall, glm::vec3(mapWallPosX * 2.0f, 0.0f, (mapWallPosZ - 1) * 2.0f), Map::WallDirection::EAST);
-				mapData.walls.push_back(wall2);
+				mapManager.walls.push_back(wall2);
 			}
 
 		}
@@ -84,28 +84,28 @@ namespace Game {
 		
 
 		// -------------------------[ AUTO MAP ]-------------------------
-		for (int x = 0; x < mapData.sizeX; x++) {
-			for (int z = 0; z < mapData.sizeZ; z++) {
+		for (int x = 0; x < mapManager.sizeX; x++) {
+			for (int z = 0; z < mapManager.sizeZ; z++) {
 				Map::TileFloor floor(textureFloor, glm::vec3(x * 2.0f, 0.0f, z * 2.0f));
-				mapData.floors.push_back(floor);
+				mapManager.floors.push_back(floor);
 			}
 		}
 
-		for (int x = 0; x < mapData.sizeX; x++) {
+		for (int x = 0; x < mapManager.sizeX; x++) {
 			Map::TileWall wallW(textureWall, glm::vec3(x * 2.0f, 0.0f, 0.0f), Map::WallDirection::WEST);
-			mapData.walls.push_back(wallW);
+			mapManager.walls.push_back(wallW);
 
-			Map::TileWall wallE(textureWall, glm::vec3(x * 2.0f, 0.0f, (mapData.sizeZ - 1) * 2.0f), Map::WallDirection::EAST);
-			mapData.walls.push_back(wallE);
+			Map::TileWall wallE(textureWall, glm::vec3(x * 2.0f, 0.0f, (mapManager.sizeZ - 1) * 2.0f), Map::WallDirection::EAST);
+			mapManager.walls.push_back(wallE);
 		}
 
 
-		for (int z = 0; z < mapData.sizeZ; z++) {
-			Map::TileWall wallN(textureWall, glm::vec3((mapData.sizeX - 1) * 2.0f, 0.0f, z * 2.0f), Map::WallDirection::NORTH);
-			mapData.walls.push_back(wallN);
+		for (int z = 0; z < mapManager.sizeZ; z++) {
+			Map::TileWall wallN(textureWall, glm::vec3((mapManager.sizeX - 1) * 2.0f, 0.0f, z * 2.0f), Map::WallDirection::NORTH);
+			mapManager.walls.push_back(wallN);
 
 			Map::TileWall wallS(textureWall, glm::vec3(0, 0.0f, z * 2.0f), Map::WallDirection::SOUTH);
-			mapData.walls.push_back(wallS);
+			mapManager.walls.push_back(wallS);
 		}
 		// --------------------------------------------------------------
 
@@ -118,7 +118,7 @@ namespace Game {
 			float ghostPosX = std::stof(ghostElement.value()["position"]["x"].dump());
 			float ghostPosZ = std::stof(ghostElement.value()["position"]["z"].dump());
 
-			Entity::Ghost ghost(glm::vec3(ghostPosX * 2.0f, 0.0f, ghostPosZ * 2.0f));
+			Entity::Ghost ghost(glm::vec3(ghostPosX * 2.0f, 0.0f, ghostPosZ * 2.0f), mapManager);
 			mapData.ghosts.push_back(ghost);
 		}
 		// --------------------------------------------------------------

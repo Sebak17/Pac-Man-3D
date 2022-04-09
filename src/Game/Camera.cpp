@@ -2,7 +2,7 @@
 
 namespace Game {
 	
-	Camera::Camera(MapData& mapData) : mapData(mapData)
+	Camera::Camera(Map::MapManager& mapManager) : mapManager(mapManager)
 	{
 		
 	}
@@ -67,7 +67,7 @@ namespace Game {
 		
 		// TODO: add collisions with sides of wall
 
-		for (auto& wall : mapData.walls) {
+		for (auto& wall : mapManager.walls) {
 
 			if (wall.wallDirection == Map::WallDirection::NORTH) {
 
@@ -92,7 +92,7 @@ namespace Game {
 
 		}
 
-		for (auto& wall : mapData.walls) {
+		for (auto& wall : mapManager.walls) {
 
 			if (wall.wallDirection == Map::WallDirection::WEST) {
 

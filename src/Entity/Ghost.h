@@ -7,9 +7,11 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <GLFW/glfw3.h>
+
 #include "../constants.h"
 #include "../shaderprogram.h"
 #include "../Model/ModelGhost.h"
+#include "../Map/MapManager.h"
 
 #include <stdlib.h>
 #include <time.h>
@@ -30,13 +32,15 @@ namespace Entity {
 	class Ghost {
 
 		public:
-			Ghost(glm::vec3 position);
+			Ghost(glm::vec3 position, Map::MapManager& mapManager);
 			virtual ~Ghost();
 
 			virtual void draw(ShaderProgram* shaderProgram, glm::mat4 M);
 			virtual void move(float deltaTime);
 
 		private:
+			Map::MapManager& mapManager;
+
 			Direction curDirection = NORTH;
 			Direction dstDirection = NONE;
 

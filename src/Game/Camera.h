@@ -7,6 +7,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/string_cast.hpp>
+
 #include <vector>
 #include <algorithm>
 
@@ -22,18 +23,9 @@ namespace Game {
 	const float MAX_SPEED_YAW = PI / 2 * 1.25;
 
 	class Camera {
-		private:
-			MapData& mapData;
-
-			float currentSpeedRotate	= 0.0f;
-			float currentSpeedMove		= 0.0f;
-			float currentYaw			= 0.0f;
-			float currentPitch			= 0.0f;
-
-			void checkWallsCollisions(glm::vec3& newPos, glm::vec3& pos);
 
 		public:
-			Camera(MapData& mapData);
+			Camera(Map::MapManager& mapManager);
 			virtual ~Camera();
 
 			glm::vec3 pos		= glm::vec3(0.0f, 0.0f, 0.0f);
@@ -43,6 +35,16 @@ namespace Game {
 			virtual glm::mat4 getV();
 			virtual void update();
 			virtual void move(int key, int action);
+
+		private:
+			Map::MapManager& mapManager;
+
+			float currentSpeedRotate = 0.0f;
+			float currentSpeedMove = 0.0f;
+			float currentYaw = 0.0f;
+			float currentPitch = 0.0f;
+
+			void checkWallsCollisions(glm::vec3& newPos, glm::vec3& pos);
 	};
 
 }

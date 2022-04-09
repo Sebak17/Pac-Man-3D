@@ -43,6 +43,9 @@
     <Filter Include="Pliki nagłówkowe\Entity">
       <UniqueIdentifier>{0bf4f2d7-ae49-4f8a-ab9b-261ec0364471}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Pliki zasobów\Shaders">
+      <UniqueIdentifier>{95e448cc-ffb6-41c2-bb5e-60172b6fa707}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Model\ModelGhost.h">
@@ -81,6 +84,9 @@
     <ClInclude Include="src\Entity\Coin.h">
       <Filter>Pliki nagłówkowe\Entity</Filter>
     </ClInclude>
+    <ClInclude Include="src\Map\MapManager.h">
+      <Filter>Pliki nagłówkowe\Map</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Game\Camera.cpp">
@@ -116,40 +122,43 @@
     <ClCompile Include="src\Entity\Coin.cpp">
       <Filter>Pliki źródłowe\Entity</Filter>
     </ClCompile>
+    <ClCompile Include="src\Map\MapManager.cpp">
+      <Filter>Pliki źródłowe\Map</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="shaders\f_colored.glsl">
-      <Filter>Pliki zasobów</Filter>
-    </None>
-    <None Include="shaders\f_constant.glsl">
-      <Filter>Pliki zasobów</Filter>
-    </None>
-    <None Include="shaders\f_lambert.glsl">
-      <Filter>Pliki zasobów</Filter>
-    </None>
-    <None Include="shaders\f_simplest.glsl">
-      <Filter>Pliki zasobów</Filter>
-    </None>
-    <None Include="shaders\f_textured.glsl">
-      <Filter>Pliki zasobów</Filter>
-    </None>
-    <None Include="shaders\v_colored.glsl">
-      <Filter>Pliki zasobów</Filter>
-    </None>
-    <None Include="shaders\v_constant.glsl">
-      <Filter>Pliki zasobów</Filter>
-    </None>
-    <None Include="shaders\v_lambert.glsl">
-      <Filter>Pliki zasobów</Filter>
-    </None>
-    <None Include="shaders\v_simplest.glsl">
-      <Filter>Pliki zasobów</Filter>
-    </None>
-    <None Include="shaders\v_textured.glsl">
-      <Filter>Pliki zasobów</Filter>
-    </None>
     <None Include="assets\game.json">
       <Filter>Pliki zasobów</Filter>
+    </None>
+    <None Include="shaders\f_colored.glsl">
+      <Filter>Pliki zasobów\Shaders</Filter>
+    </None>
+    <None Include="shaders\f_constant.glsl">
+      <Filter>Pliki zasobów\Shaders</Filter>
+    </None>
+    <None Include="shaders\f_lambert.glsl">
+      <Filter>Pliki zasobów\Shaders</Filter>
+    </None>
+    <None Include="shaders\f_simplest.glsl">
+      <Filter>Pliki zasobów\Shaders</Filter>
+    </None>
+    <None Include="shaders\f_textured.glsl">
+      <Filter>Pliki zasobów\Shaders</Filter>
+    </None>
+    <None Include="shaders\v_colored.glsl">
+      <Filter>Pliki zasobów\Shaders</Filter>
+    </None>
+    <None Include="shaders\v_constant.glsl">
+      <Filter>Pliki zasobów\Shaders</Filter>
+    </None>
+    <None Include="shaders\v_lambert.glsl">
+      <Filter>Pliki zasobów\Shaders</Filter>
+    </None>
+    <None Include="shaders\v_simplest.glsl">
+      <Filter>Pliki zasobów\Shaders</Filter>
+    </None>
+    <None Include="shaders\v_textured.glsl">
+      <Filter>Pliki zasobów\Shaders</Filter>
     </None>
   </ItemGroup>
 </Project>
