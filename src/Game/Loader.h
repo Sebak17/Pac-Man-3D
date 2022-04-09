@@ -23,6 +23,9 @@ namespace Game {
 	using json = nlohmann::json;
 
 	struct MapData {
+		int sizeX;
+		int sizeZ;
+
 		std::vector<Map::TileFloor> floors;
 		std::vector<Map::TileWall> walls;
 

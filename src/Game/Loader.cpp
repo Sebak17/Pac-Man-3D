@@ -30,46 +30,69 @@ namespace Game {
 		json gameData;
 		file >> gameData;
 
-		auto mapElements = gameData.find("map");
+		auto mapDataInfo = gameData.find("map");
+		
+		mapData.sizeX = std::stoi(mapDataInfo.value()["size"]["x"].dump());
+		mapData.sizeZ = std::stoi(mapDataInfo.value()["size"]["z"].dump());
 
-		for (const auto& mapElement : mapElements.value().items())
+
+		// ---------------------------[ WALLS ]--------------------------
+		for (const auto& mapWall : mapDataInfo.value()["walls"].items())
 		{
-			string mapElementType = mapElement.value()["type"].dump();
-			float mapElementPosX = std::stof(mapElement.value()["position"]["x"].dump());
-			float mapElementPosZ = std::stof(mapElement.value()["position"]["z"].dump());
+			float mapWallPosX = std::stof(mapWall.value()["x"].dump());
+			float mapWallPosZ = std::stof(mapWall.value()["z"].dump());
 
-			if (strcmp(mapElementType.c_str(), "\"wall\"") == 0) {
-				string wallDir = mapElement.value()["position"]["direction"].dump();
-				Map::WallDirection wallDirection;
+			string mapWallDir = mapWall.value()["direction"].dump();
+			Map::WallDirection wallDirection;
 
-				if (strcmp(wallDir.c_str(), "\"east\"") == 0) {
-					wallDirection = Map::WallDirection::EAST;
-				} else if(strcmp(wallDir.c_str(), "\"south\"") == 0) {
-					wallDirection = Map::WallDirection::SOUTH;
-				} else if(strcmp(wallDir.c_str(), "\"west\"") == 0) {
-					wallDirection = Map::WallDirection::WEST;
-				} else {
-					wallDirection = Map::WallDirection::NORTH;
-				}
-
-				Map::TileWall wall(textureWall, glm::vec3(mapElementPosX, 0.0f, mapElementPosZ), wallDirection);
-				mapData.walls.push_back(wall);
+			if (strcmp(mapWallDir.c_str(), "\"east\"") == 0) {
+				wallDirection = Map::WallDirection::EAST;
+			}
+			else if (strcmp(mapWallDir.c_str(), "\"south\"") == 0) {
+				wallDirection = Map::WallDirection::SOUTH;
+			}
+			else if (strcmp(mapWallDir.c_str(), "\"west\"") == 0) {
+				wallDirection = Map::WallDirection::WEST;
+			}
+			else {
+				wallDirection = Map::WallDirection::NORTH;
 			}
 
-			if (strcmp(mapElementType.c_str(), "\"floor\"") == 0) {
-				Map::TileFloor floor(textureFloor, glm::vec3(mapElementPosX, 0.0f, mapElementPosZ));
+			Map::TileWall wall(textureWall, glm::vec3(mapWallPosX * 2.0f, 0.0f, mapWallPosZ * 2.0f), wallDirection);
+			mapData.walls.push_back(wall);
+
+		}
+		// --------------------------------------------------------------
+		
+
+		// -------------------------[ AUTO MAP ]-------------------------
+		for (int x = 0; x < mapData.sizeX; x++) {
+			for (int z = 0; z < mapData.sizeZ; z++) {
+				Map::TileFloor floor(textureFloor, glm::vec3(x * 2.0f, 0.0f, z * 2.0f));
 				mapData.floors.push_back(floor);
 			}
+		}
 
-			if (strcmp(mapElementType.c_str(), "\"ceiling\"") == 0) {
-				Map::TileFloor floor(textureFloor, glm::vec3(mapElementPosX, 2.0f, mapElementPosZ));
-				mapData.floors.push_back(floor);
-			}
+		for (int x = 0; x < mapData.sizeX; x++) {
+			Map::TileWall wallW(textureWall, glm::vec3(x * 2.0f, 0.0f, 0.0f), Map::WallDirection::WEST);
+			mapData.walls.push_back(wallW);
 
+			Map::TileWall wallE(textureWall, glm::vec3(x * 2.0f, 0.0f, (mapData.sizeZ - 1) * 2.0f), Map::WallDirection::EAST);
+			mapData.walls.push_back(wallE);
 		}
 
 
+		for (int z = 0; z < mapData.sizeZ; z++) {
+			Map::TileWall wallN(textureWall, glm::vec3((mapData.sizeX - 1) * 2.0f, 0.0f, z * 2.0f), Map::WallDirection::NORTH);
+			mapData.walls.push_back(wallN);
 
+			Map::TileWall wallS(textureWall, glm::vec3(0, 0.0f, z * 2.0f), Map::WallDirection::SOUTH);
+			mapData.walls.push_back(wallS);
+		}
+		// --------------------------------------------------------------
+
+
+		// --------------------------[ GHOSTS ]--------------------------
 		auto ghostsElements = gameData.find("ghosts");
 
 		for (const auto& ghostsElement : ghostsElements.value().items())
@@ -77,9 +100,10 @@ namespace Game {
 			float ghostPosX = std::stof(ghostsElement.value()["position"]["x"].dump());
 			float ghostPosZ = std::stof(ghostsElement.value()["position"]["z"].dump());
 
-			Entity::Ghost ghost(glm::vec3(ghostPosX, 0.0f, ghostPosZ));
+			Entity::Ghost ghost(glm::vec3(ghostPosX * 2.0f, 0.0f, ghostPosZ * 2.0f));
 			mapData.ghosts.push_back(ghost);
 		}
+		// --------------------------------------------------------------
 
 
 		return mapData;
