@@ -41,7 +41,20 @@ void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods
 		return;
 	}
 
-	camera.move(key, action);
+	if (gameManager.status == Game::Status::MENU) {
+
+		if (action == GLFW_PRESS && key == GLFW_KEY_SPACE) {
+			gameManager.status = Game::Status::PLAYING;
+		}
+
+	}
+
+	if (gameManager.status == Game::Status::PLAYING) {
+
+		camera.move(key, action);
+
+	}
+
 }
 
 void initOpenGLProgram(GLFWwindow* window)
@@ -71,14 +84,19 @@ void freeOpenGLProgram(GLFWwindow* window)
 
 void update(float deltaTime)
 {
-	camera.update();
 
-	for (auto& ghost : mapData.ghosts) {
-		ghost.move(deltaTime);
-	}
-	
-	for (auto& coin : mapData.coins) {
-		coin.update(deltaTime);
+	if (gameManager.status == Game::Status::PLAYING) {
+
+		camera.update();
+
+		for (auto& ghost : mapData.ghosts) {
+			ghost.move(deltaTime);
+		}
+
+		for (auto& coin : mapData.coins) {
+			coin.update(deltaTime);
+		}
+
 	}
 
 }
@@ -93,34 +111,36 @@ void drawScene(GLFWwindow* window)
 	glm::mat4 P = glm::perspective(glm::radians(50.0f), 2.0f, 0.1f, 50.0f);
 	glm::mat4 M = glm::mat4(1.0f);
 
+	if (gameManager.status == Game::Status::PLAYING)
+	{
+		
+		spLambert->use();
+		glUniformMatrix4fv(spLambert->u("P"), 1, false, glm::value_ptr(P));
+		glUniformMatrix4fv(spLambert->u("V"), 1, false, glm::value_ptr(V));
 
-	glm::mat4 M_1 = glm::translate(M, glm::vec3(-10.0f, 0.0f, -10.0f));
-	
-	
-	spLambert->use();
-	glUniformMatrix4fv(spLambert->u("P"), 1, false, glm::value_ptr(P));
-	glUniformMatrix4fv(spLambert->u("V"), 1, false, glm::value_ptr(V));
+		for (auto& ghost : mapData.ghosts) {
+			ghost.draw(spLambert, M);
+		}
 
-	for (auto& ghost : mapData.ghosts) {
-		ghost.draw(spLambert, M);
+		for (auto& coin : mapData.coins) {
+			coin.draw(spLambert, M);
+		}
+
+
+		spTextured->use();
+		glUniformMatrix4fv(spTextured->u("P"), 1, false, glm::value_ptr(P));
+		glUniformMatrix4fv(spTextured->u("V"), 1, false, glm::value_ptr(V));
+
+		for (auto& floor : mapManager.floors) {
+			floor.draw(spTextured, M);
+		}
+
+		for (auto& wall : mapManager.walls) {
+			wall.draw(spTextured, M);
+		}
+
 	}
 
-	for (auto& coin : mapData.coins) {
-		coin.draw(spLambert, M);
-	}
-
-
-	spTextured->use();
-	glUniformMatrix4fv(spTextured->u("P"), 1, false, glm::value_ptr(P));
-	glUniformMatrix4fv(spTextured->u("V"), 1, false, glm::value_ptr(V));
-
-	for (auto& floor : mapManager.floors) {
-		floor.draw(spTextured, M);
-	}
-
-	for (auto& wall : mapManager.walls) {
-		wall.draw(spTextured, M);
-	}
 
     glfwSwapBuffers(window);
 }
