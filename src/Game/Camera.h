@@ -1,15 +1,8 @@
-
 #ifndef CAMERA_H
 #define CAMERA_H
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtx/string_cast.hpp>
-
-#include <vector>
-#include <algorithm>
 
 #include "../constants.h"
 #include "Loader.h"
@@ -20,7 +13,7 @@ namespace Game {
 	using namespace glm;
 
 	const float MAX_SPEED_POS = PI / 30;
-	const float MAX_SPEED_YAW = PI / 2 * 1.25;
+	const float MAX_SPEED_YAW = PI / 2 * 1.25f;
 
 	class Camera {
 

@@ -87,6 +87,9 @@
     <ClInclude Include="src\Map\MapManager.h">
       <Filter>Pliki nagłówkowe\Map</Filter>
     </ClInclude>
+    <ClInclude Include="src\Game\GameManager.h">
+      <Filter>Pliki nagłówkowe\Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Game\Camera.cpp">
@@ -124,6 +127,9 @@
     </ClCompile>
     <ClCompile Include="src\Map\MapManager.cpp">
       <Filter>Pliki źródłowe\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game\GameManager.cpp">
+      <Filter>Pliki źródłowe\Game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

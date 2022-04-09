@@ -1,4 +1,3 @@
-
 #ifndef MAP_MANAGER_H
 #define MAP_MANAGER_H
 
@@ -12,6 +11,7 @@ namespace Map {
 	using namespace std;
 
 	class MapManager {
+
 		public:
 			int sizeX;
 			int sizeZ;

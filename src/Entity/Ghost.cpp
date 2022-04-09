@@ -37,7 +37,7 @@ namespace Entity {
 
 	void Ghost::move(float deltaTime)
 	{
-		float speed = 1.5 * deltaTime;
+		float speed = 1.5f * deltaTime;
 
 		if (curPosition.x == dstPosition.x && curPosition.z == dstPosition.z) {
 			dstPosition = this->findNextPosition();
@@ -173,11 +173,9 @@ namespace Entity {
 			case 0:
 				dstDirection = Direction::WEST;
 				return glm::vec3(this->curPosition.x, 0.0f, this->curPosition.z - 2);
-
 		}
 
-
-		
+		return glm::vec3(this->curPosition.x, 0.0f, this->curPosition.z);
 	}
 
 }

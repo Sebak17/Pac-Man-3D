@@ -55777,7 +55777,7 @@ float GhostTexCoords[] = {
     0.291667, 0.3125
 };
 
-Obj2glVerts GhostVerts = {
+ObjVerts GhostVerts = {
     GhostNumFaces,
     GhostNumVerts,
     GhostVertCoords,

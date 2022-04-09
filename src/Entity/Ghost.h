@@ -1,22 +1,20 @@
-
 #ifndef GHOST_H
 #define GHOST_H
 
-#include <GL/glew.h>
-#include <vector>
-#include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
-#include <GLFW/glfw3.h>
+#include <stdlib.h>
+#include <time.h>
 
 #include "../constants.h"
 #include "../shaderprogram.h"
 #include "../Model/ModelGhost.h"
 #include "../Map/MapManager.h"
 
-#include <stdlib.h>
-#include <time.h>
-
 namespace Entity {
+
+	using namespace std;
+	using namespace glm;
+
 
 	enum Direction {
 		NORTH = 1,
@@ -26,8 +24,6 @@ namespace Entity {
 		NONE = -1,
 	};
 
-	using namespace std;
-	using namespace glm;
 
 	class Ghost {
 

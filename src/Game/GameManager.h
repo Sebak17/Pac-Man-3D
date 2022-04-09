@@ -1,4 +1,3 @@
-
 #ifndef GAME_MANAGER_H
 #define GAME_MANAGER_H
 
@@ -14,15 +13,15 @@ namespace Game {
 	};
 
 	class GameManager {
+
 		public:
+			Status status;
+
 			GameManager();
 			virtual ~GameManager();
-
-			Status status;
 
 	};
 
 }
-
 
 #endif

@@ -1,11 +1,8 @@
-
 #ifndef TILE_FLOOR_H
 #define TILE_FLOOR_H
 
-#include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
+
 #include "../shaderprogram.h"
 
 namespace Map {
@@ -14,6 +11,7 @@ namespace Map {
 	using namespace glm;
 
 	class TileFloor {
+
 		public:
 			int vertexCount;
 			float* vertices;

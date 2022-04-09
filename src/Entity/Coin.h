@@ -1,12 +1,8 @@
-
 #ifndef COIN_H
 #define COIN_H
 
-#include <GL/glew.h>
-#include <vector>
-#include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
-#include <GLFW/glfw3.h>
+
 #include "../constants.h"
 #include "../shaderprogram.h"
 #include "../Model/ModelCoin.h"

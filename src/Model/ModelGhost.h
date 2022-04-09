@@ -1,5 +1,5 @@
-#ifndef OBJ2GL_OBJ2GLVERTS
-#define OBJ2GL_OBJ2GLVERTS
+#ifndef OBJVERTS
+#define OBJVERTS
 
 typedef struct {
     int numFaces;
@@ -7,15 +7,15 @@ typedef struct {
     float *vertCoords;
     float *normalCoords;
     float *texCoords;
-} Obj2glVerts;
+} ObjVerts;
 
 #endif
 
 
 
-#ifndef OBJ2GL_GHOST
-#define OBJ2GL_GHOST
+#ifndef MODEL_GHOST
+#define MODEL_GHOST
 
-extern Obj2glVerts GhostVerts;
+extern ObjVerts GhostVerts;
 
 #endif

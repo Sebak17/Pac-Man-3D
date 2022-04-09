@@ -1,18 +1,16 @@
-
 #ifndef TILE_WALL_H
 #define TILE_WALL_H
 
-#include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
-#include "../shaderprogram.h"
+
 #include "../constants.h"
+#include "../shaderprogram.h"
 
 namespace Map {
 
 	using namespace std;
 	using namespace glm;
+
 
 	enum WallDirection {
 		NORTH = 1,
@@ -21,7 +19,9 @@ namespace Map {
 		WEST = 0,
 	};
 
+
 	class TileWall {
+
 		public:
 			int vertexCount;
 			float* vertices;
@@ -47,6 +47,5 @@ namespace Map {
 	}
 
 }
-
 
 #endif

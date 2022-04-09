@@ -1,10 +1,7 @@
-
 #ifndef GAME_LOADER_H
 #define GAME_LOADER_H
 
 #include <glm/glm.hpp>
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
 #include <vector>
 #include <fstream>
 #include <iostream>
@@ -26,12 +23,15 @@ namespace Game {
 	using namespace glm;
 	using json = nlohmann::json;
 
+
 	struct MapData {
 		std::vector<Entity::Ghost> ghosts;
 		std::vector<Entity::Coin> coins;
 	};
 
+
 	class Loader {
+
 		public:
 			Loader(Map::MapManager& mapManager);
 			virtual ~Loader();
