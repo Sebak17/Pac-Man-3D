@@ -19,6 +19,7 @@ namespace Entity {
 		M = this->getPosition(M);
 
 		glUniformMatrix4fv(shaderProgram->u("M"), 1, false, glm::value_ptr(M));
+		glUniform4f(spLambert->u("color"), 1, 1, 1, 1);
 
 		glEnableVertexAttribArray(0);
 		glEnableVertexAttribArray(1);
