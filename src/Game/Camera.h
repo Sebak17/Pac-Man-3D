@@ -30,6 +30,7 @@ namespace Game {
 			virtual void move(int key, int action);
 
 			virtual bool checkGhostsCollisions();
+			virtual bool checkCoinsCollisions();
 
 
 		private:

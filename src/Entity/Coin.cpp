@@ -5,6 +5,8 @@ namespace Entity {
 	Coin::Coin(glm::vec3 position)
 	{
 		this->position = position;
+
+		this->collected = false;
 	}
 
 	Coin::~Coin()
@@ -13,6 +15,10 @@ namespace Entity {
 
 	void Coin::draw(ShaderProgram* shaderProgram, glm::mat4 M)
 	{
+		if (this->collected) {
+			return;
+		}
+
 		M = this->getPosition(M);
 
 		glUniformMatrix4fv(shaderProgram->u("M"), 1, false, glm::value_ptr(M));

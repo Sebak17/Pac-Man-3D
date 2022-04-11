@@ -96,6 +96,11 @@ void update(float deltaTime)
 			printf("GHOST!!! Lives: %d\n", player.livesCount);
 		}
 
+		if (camera.checkCoinsCollisions()) {
+			player.points++;
+			printf("Points: %d\n", player.points);
+		}
+
 		if (player.livesCount <= 0) {
 			gameManager.status = Game::Status::DEFAT;
 		}

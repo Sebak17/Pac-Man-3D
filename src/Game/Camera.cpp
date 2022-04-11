@@ -128,7 +128,25 @@ namespace Game {
 				return true;
 			}
 		}
-	
+
+		return false;
+	}
+
+	bool Camera::checkCoinsCollisions()
+	{
+		for (auto& coin : mapData.coins)
+		{
+			if (coin.collected) {
+				continue;
+			}
+
+			float d = distance(this->pos, coin.position);
+			if (d < 1.0f) {
+				coin.collected = true;
+				return true;
+			}
+		}
+
 		return false;
 	}
 

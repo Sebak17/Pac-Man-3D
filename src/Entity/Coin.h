@@ -15,6 +15,10 @@ namespace Entity {
 	class Coin {
 
 		public:
+			bool collected;
+
+			glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f);
+
 			Coin(glm::vec3 position);
 			virtual ~Coin();
 
@@ -22,7 +26,6 @@ namespace Entity {
 			virtual void update(float deltaTime);
 
 		private:
-			glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f);
 			glm::vec3 rotate = glm::vec3(0.0f, 0.0f, 0.0f);
 
 			glm::mat4 getPosition(glm::mat4 M);
