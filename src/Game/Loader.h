@@ -13,6 +13,7 @@
 
 #include "../Map/TileFloor.h"
 #include "../Map/TileWall.h"
+#include "../Map/Torch.h"
 #include "../Entity/Ghost.h"
 #include "../Entity/Coin.h"
 
@@ -46,7 +47,9 @@ namespace Game {
 		private:
 			Map::MapManager& mapManager;
 
-			GLuint textureWall, textureFloor;
+			GLuint textureWall, textureFloor, textureTorch;
+
+			Map::WallDirection getMapElementDirectionFromName(string name);
 	};
 
 }

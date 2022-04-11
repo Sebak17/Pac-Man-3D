@@ -5,6 +5,7 @@
 
 #include "TileFloor.h"
 #include "TileWall.h"
+#include "Torch.h"
 
 namespace Map {
 
@@ -18,6 +19,7 @@ namespace Map {
 
 			std::vector<Map::TileFloor> floors;
 			std::vector<Map::TileWall> walls;
+			std::vector<Map::Torch> torches;
 
 			MapManager();
 			virtual ~MapManager();

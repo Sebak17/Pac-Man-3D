@@ -93,6 +93,12 @@
     <ClInclude Include="src\Game\Player.h">
       <Filter>Pliki nagłówkowe\Game</Filter>
     </ClInclude>
+    <ClInclude Include="src\Model\ModelTorch.h">
+      <Filter>Pliki nagłówkowe\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Map\Torch.h">
+      <Filter>Pliki nagłówkowe\Map</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Game\Camera.cpp">
@@ -136,6 +142,12 @@
     </ClCompile>
     <ClCompile Include="src\Game\Player.cpp">
       <Filter>Pliki źródłowe\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Model\ModelTorch.cpp">
+      <Filter>Pliki źródłowe\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Map\Torch.cpp">
+      <Filter>Pliki źródłowe\Map</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

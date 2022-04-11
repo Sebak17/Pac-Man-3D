@@ -14,12 +14,14 @@ namespace Game {
 	{
 		textureWall = this->readTexture("assets/textures/bricks.png");
 		textureFloor = this->readTexture("assets/textures/stone-wall.png");
+		textureTorch = this->readTexture("assets/textures/torch.png");
 	}
 
 	void Loader::destroyTextures()
 	{
 		glDeleteTextures(1, &textureWall);
 		glDeleteTextures(2, &textureFloor);
+		glDeleteTextures(2, &textureTorch);
 	}
 
 	Game::MapData Loader::loadMap(const char* filename)
@@ -42,21 +44,7 @@ namespace Game {
 			float mapWallPosX = std::stof(mapWall.value()["x"].dump());
 			float mapWallPosZ = std::stof(mapWall.value()["z"].dump());
 
-			string mapWallDir = mapWall.value()["direction"].dump();
-			Map::WallDirection wallDirection;
-
-			if (strcmp(mapWallDir.c_str(), "\"east\"") == 0) {
-				wallDirection = Map::WallDirection::EAST;
-			}
-			else if (strcmp(mapWallDir.c_str(), "\"south\"") == 0) {
-				wallDirection = Map::WallDirection::SOUTH;
-			}
-			else if (strcmp(mapWallDir.c_str(), "\"west\"") == 0) {
-				wallDirection = Map::WallDirection::WEST;
-			}
-			else {
-				wallDirection = Map::WallDirection::NORTH;
-			}
+			Map::WallDirection wallDirection = this->getMapElementDirectionFromName(mapWall.value()["direction"].dump());
 
 			Map::TileWall wall(textureWall, glm::vec3(mapWallPosX * 2.0f, 0.0f, mapWallPosZ * 2.0f), wallDirection);
 			mapManager.walls.push_back(wall);
@@ -115,6 +103,19 @@ namespace Game {
 		// --------------------------------------------------------------
 
 
+		// -------------------------[ TORCHES ]--------------------------
+		for (const auto& torchElement : mapDataInfo.value()["torches"].items())
+		{
+			float torchPosX = std::stof(torchElement.value()["x"].dump());
+			float torchPosZ = std::stof(torchElement.value()["z"].dump());
+			Map::WallDirection torchDirection = this->getMapElementDirectionFromName(torchElement.value()["direction"].dump());
+
+			Map::Torch torch(textureTorch, glm::vec3(torchPosX * 2.0f, 0.0f, torchPosZ * 2.0f), torchDirection);
+			mapManager.torches.push_back(torch);
+		}
+		// --------------------------------------------------------------
+
+
 		// --------------------------[ GHOSTS ]--------------------------
 		auto ghostsElements = gameData.find("ghosts");
 
@@ -127,6 +128,7 @@ namespace Game {
 			mapData.ghosts.push_back(ghost);
 		}
 		// --------------------------------------------------------------
+
 
 		// ---------------------------[ COINS ]--------------------------
 		auto coinsElements = gameData.find("coins");
@@ -164,6 +166,23 @@ namespace Game {
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
 		return tex;
+	}
+
+
+	Map::WallDirection Loader::getMapElementDirectionFromName(string name)
+	{
+		if (strcmp(name.c_str(), "\"east\"") == 0) {
+			return Map::WallDirection::EAST;
+		}
+		else if (strcmp(name.c_str(), "\"south\"") == 0) {
+			return Map::WallDirection::SOUTH;
+		}
+		else if (strcmp(name.c_str(), "\"west\"") == 0) {
+			return Map::WallDirection::WEST;
+		}
+		else {
+			return Map::WallDirection::NORTH;
+		}
 	}
 
 }

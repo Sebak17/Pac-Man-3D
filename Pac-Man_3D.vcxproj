@@ -31,8 +31,10 @@
     <ClInclude Include="src\Map\MapManager.h" />
     <ClInclude Include="src\Map\TileFloor.h" />
     <ClInclude Include="src\Map\TileWall.h" />
+    <ClInclude Include="src\Map\Torch.h" />
     <ClInclude Include="src\Model\ModelCoin.h" />
     <ClInclude Include="src\Model\ModelGhost.h" />
+    <ClInclude Include="src\Model\ModelTorch.h" />
     <ClInclude Include="src\shaderprogram.h" />
   </ItemGroup>
   <ItemGroup>
@@ -47,8 +49,10 @@
     <ClCompile Include="src\Map\MapManager.cpp" />
     <ClCompile Include="src\Map\TileFloor.cpp" />
     <ClCompile Include="src\Map\TileWall.cpp" />
+    <ClCompile Include="src\Map\Torch.cpp" />
     <ClCompile Include="src\Model\ModelCoin.cpp" />
     <ClCompile Include="src\Model\ModelGhost.cpp" />
+    <ClCompile Include="src\Model\ModelTorch.cpp" />
     <ClCompile Include="src\shaderprogram.cpp" />
   </ItemGroup>
   <ItemGroup>

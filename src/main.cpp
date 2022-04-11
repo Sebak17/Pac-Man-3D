@@ -64,7 +64,6 @@ void initOpenGLProgram(GLFWwindow* window)
 	gameLoader.loadTextures();
 
 	mapData = gameLoader.loadMap("assets/game.json");
-
 }
 
 
@@ -144,6 +143,10 @@ void drawScene(GLFWwindow* window)
 
 		for (auto& wall : mapManager.walls) {
 			wall.draw(spMap, M);
+		}
+
+		for (auto& torch : mapManager.torches) {
+			torch.draw(spMap, M);
 		}
 
 	}
