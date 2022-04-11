@@ -4,12 +4,16 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
+#include <irrKlang.h>
+
 #include "shaderprogram.h"
 #include "Game/Camera.h"
 #include "Game/GameManager.h"
 #include "Game/Loader.h"
 #include "Game/Player.h"
 #include "Map/MapManager.h"
+
+irrklang::ISoundEngine* engine;
 
 Game::MapData mapData;
 
@@ -52,6 +56,8 @@ void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods
 
 void initOpenGLProgram(GLFWwindow* window)
 {
+	engine = irrklang::createIrrKlangDevice();
+
 	initShaders();
 
 	glClearColor(0, 0, 0, 1);
@@ -98,6 +104,7 @@ void update(float deltaTime)
 		if (camera.checkCoinsCollisions()) {
 			player.points++;
 			printf("Points: %d\n", player.points);
+			engine->play2D("assets/bleep.wav", false);
 		}
 
 		if (player.livesCount <= 0) {
