@@ -21,23 +21,16 @@ Place, Fifth Floor, Boston, MA  02110 - 1301  USA
 
 
 ShaderProgram* spLambert;
-ShaderProgram* spConstant;
-ShaderProgram* spColored;
-ShaderProgram* spTextured;
-
+ShaderProgram* spMap;
 
 void initShaders() {
 	spLambert = new ShaderProgram("shaders/v_lambert.glsl", NULL, "shaders/f_lambert.glsl");
-	spConstant = new ShaderProgram("shaders/v_constant.glsl", NULL, "shaders/f_constant.glsl");
-	spTextured = new ShaderProgram("shaders/v_textured.glsl", NULL, "shaders/f_textured.glsl");
-	spColored = new ShaderProgram("shaders/v_colored.glsl", NULL, "shaders/f_colored.glsl");
+	spMap = new ShaderProgram("shaders/v_map.glsl", NULL, "shaders/f_map.glsl");
 }
 
 void freeShaders() {
 	delete spLambert;
-	delete spConstant;
-	delete spTextured;
-	delete spColored;
+	delete spMap;
 }
 
 //Procedura wczytuje plik do tablicy znaków.

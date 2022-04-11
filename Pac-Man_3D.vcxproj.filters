@@ -142,34 +142,16 @@
     <None Include="assets\game.json">
       <Filter>Pliki zasobów</Filter>
     </None>
-    <None Include="shaders\f_colored.glsl">
-      <Filter>Pliki zasobów\Shaders</Filter>
-    </None>
-    <None Include="shaders\f_constant.glsl">
-      <Filter>Pliki zasobów\Shaders</Filter>
-    </None>
     <None Include="shaders\f_lambert.glsl">
-      <Filter>Pliki zasobów\Shaders</Filter>
-    </None>
-    <None Include="shaders\f_simplest.glsl">
-      <Filter>Pliki zasobów\Shaders</Filter>
-    </None>
-    <None Include="shaders\f_textured.glsl">
-      <Filter>Pliki zasobów\Shaders</Filter>
-    </None>
-    <None Include="shaders\v_colored.glsl">
-      <Filter>Pliki zasobów\Shaders</Filter>
-    </None>
-    <None Include="shaders\v_constant.glsl">
       <Filter>Pliki zasobów\Shaders</Filter>
     </None>
     <None Include="shaders\v_lambert.glsl">
       <Filter>Pliki zasobów\Shaders</Filter>
     </None>
-    <None Include="shaders\v_simplest.glsl">
+    <None Include="shaders\v_map.glsl">
       <Filter>Pliki zasobów\Shaders</Filter>
     </None>
-    <None Include="shaders\v_textured.glsl">
+    <None Include="shaders\f_map.glsl">
       <Filter>Pliki zasobów\Shaders</Filter>
     </None>
   </ItemGroup>

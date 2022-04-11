@@ -121,16 +121,16 @@ void drawScene(GLFWwindow* window)
 		}
 
 
-		spTextured->use();
-		glUniformMatrix4fv(spTextured->u("P"), 1, false, glm::value_ptr(P));
-		glUniformMatrix4fv(spTextured->u("V"), 1, false, glm::value_ptr(V));
+		spMap->use();
+		glUniformMatrix4fv(spMap->u("P"), 1, false, glm::value_ptr(P));
+		glUniformMatrix4fv(spMap->u("V"), 1, false, glm::value_ptr(V));
 
 		for (auto& floor : mapManager.floors) {
-			floor.draw(spTextured, M);
+			floor.draw(spMap, M);
 		}
 
 		for (auto& wall : mapManager.walls) {
-			wall.draw(spTextured, M);
+			wall.draw(spMap, M);
 		}
 
 	}

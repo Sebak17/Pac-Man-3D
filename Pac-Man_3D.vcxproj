@@ -53,16 +53,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\game.json" />
-    <None Include="shaders\f_colored.glsl" />
-    <None Include="shaders\f_constant.glsl" />
     <None Include="shaders\f_lambert.glsl" />
-    <None Include="shaders\f_simplest.glsl" />
-    <None Include="shaders\f_textured.glsl" />
-    <None Include="shaders\v_colored.glsl" />
-    <None Include="shaders\v_constant.glsl" />
+    <None Include="shaders\f_map.glsl" />
     <None Include="shaders\v_lambert.glsl" />
-    <None Include="shaders\v_simplest.glsl" />
-    <None Include="shaders\v_textured.glsl" />
+    <None Include="shaders\v_map.glsl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
