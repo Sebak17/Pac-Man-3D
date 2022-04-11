@@ -18,7 +18,7 @@ Game::GameManager gameManager;
 
 Game::Player player;
 Game::Loader gameLoader(mapManager);
-Game::Camera camera(mapManager);
+Game::Camera camera(mapManager, mapData);
 
 
 void error_callback(int error, const char* description)
@@ -65,7 +65,6 @@ void initOpenGLProgram(GLFWwindow* window)
 
 	mapData = gameLoader.loadMap("assets/game.json");
 
-	player.addProtection();
 }
 
 
@@ -91,6 +90,15 @@ void update(float deltaTime)
 			coin.update(deltaTime);
 		}
 
+		if (camera.checkGhostsCollisions() && !player.isProtected()) {
+			player.addProtection();
+			player.livesCount--;
+			printf("GHOST!!! Lives: %d\n", player.livesCount);
+		}
+
+		if (player.livesCount <= 0) {
+			gameManager.status = Game::Status::DEFAT;
+		}
 	}
 
 }

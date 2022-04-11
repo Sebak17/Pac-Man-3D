@@ -28,6 +28,8 @@ namespace Entity {
 	class Ghost {
 
 		public:
+			glm::vec3 curPosition = glm::vec3(0.0f, 0.0f, 0.0f);
+
 			Ghost(glm::vec3 position, Map::MapManager& mapManager);
 			virtual ~Ghost();
 
@@ -40,7 +42,6 @@ namespace Entity {
 			Direction curDirection = NORTH;
 			Direction dstDirection = NONE;
 
-			glm::vec3 curPosition = glm::vec3(0.0f, 0.0f, 0.0f);
 			glm::vec3 dstPosition = glm::vec3(0.0f, 0.0f, 0.0f);
 
 			glm::vec3 rotate = glm::vec3(0.0f, 90.0f, 0.0f);

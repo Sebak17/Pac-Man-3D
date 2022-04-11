@@ -18,19 +18,23 @@ namespace Game {
 	class Camera {
 
 		public:
-			Camera(Map::MapManager& mapManager);
-			virtual ~Camera();
+			glm::vec3 pos = glm::vec3(0.0f, 0.0f, 0.0f);
+			glm::vec3 DirFront = glm::vec3(0.0f, 0.0f, 1.0f);
+			glm::vec3 DirUp = glm::vec3(0.0f, 1.0f, 0.0f);
 
-			glm::vec3 pos		= glm::vec3(0.0f, 0.0f, 0.0f);
-			glm::vec3 DirFront	= glm::vec3(0.0f, 0.0f, 1.0f);
-			glm::vec3 DirUp		= glm::vec3(0.0f, 1.0f, 0.0f);
+			Camera(Map::MapManager& mapManager, Game::MapData& mapData);
+			virtual ~Camera();
 
 			virtual glm::mat4 getV();
 			virtual void update();
 			virtual void move(int key, int action);
 
+			virtual bool checkGhostsCollisions();
+
+
 		private:
 			Map::MapManager& mapManager;
+			Game::MapData& mapData;
 
 			float currentSpeedRotate = 0.0f;
 			float currentSpeedMove = 0.0f;

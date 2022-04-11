@@ -2,7 +2,7 @@
 
 namespace Game {
 	
-	Camera::Camera(Map::MapManager& mapManager) : mapManager(mapManager)
+	Camera::Camera(Map::MapManager& mapManager, Game::MapData& mapData) : mapManager(mapManager), mapData(mapData)
 	{
 		
 	}
@@ -117,6 +117,19 @@ namespace Game {
 
 		}
 
+	}
+
+	bool Camera::checkGhostsCollisions()
+	{
+		for (auto& ghost : mapData.ghosts)
+		{
+			float d = distance(this->pos, ghost.curPosition);
+			if (d < 1.1f) {
+				return true;
+			}
+		}
+	
+		return false;
 	}
 
 }
