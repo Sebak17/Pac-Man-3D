@@ -3,30 +3,23 @@
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-#include <glm/glm.hpp>
-#include <glm/gtc/type_ptr.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <stdlib.h>
-#include <stdio.h>
-#include <vector>
-#include "constants.h"
+
 #include "shaderprogram.h"
-#include "math.h"
-#include "cmath"
-
-#include "Map/MapManager.h"
-#include "Game/GameManager.h"
-
-#include "Game/Loader.h"
 #include "Game/Camera.h"
+#include "Game/GameManager.h"
+#include "Game/Loader.h"
+#include "Game/Player.h"
+#include "Map/MapManager.h"
 
 Game::MapData mapData;
 
 Map::MapManager mapManager;
 Game::GameManager gameManager;
 
+Game::Player player;
 Game::Loader gameLoader(mapManager);
 Game::Camera camera(mapManager);
+
 
 void error_callback(int error, const char* description)
 {
@@ -72,6 +65,7 @@ void initOpenGLProgram(GLFWwindow* window)
 
 	mapData = gameLoader.loadMap("assets/game.json");
 
+	player.addProtection();
 }
 
 

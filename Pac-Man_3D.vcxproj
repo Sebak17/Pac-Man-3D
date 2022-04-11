@@ -27,6 +27,7 @@
     <ClInclude Include="src\Game\Camera.h" />
     <ClInclude Include="src\Game\GameManager.h" />
     <ClInclude Include="src\Game\Loader.h" />
+    <ClInclude Include="src\Game\Player.h" />
     <ClInclude Include="src\Map\MapManager.h" />
     <ClInclude Include="src\Map\TileFloor.h" />
     <ClInclude Include="src\Map\TileWall.h" />
@@ -41,6 +42,7 @@
     <ClCompile Include="src\Game\Camera.cpp" />
     <ClCompile Include="src\Game\GameManager.cpp" />
     <ClCompile Include="src\Game\Loader.cpp" />
+    <ClCompile Include="src\Game\Player.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Map\MapManager.cpp" />
     <ClCompile Include="src\Map\TileFloor.cpp" />
