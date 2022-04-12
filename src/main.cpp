@@ -16,6 +16,8 @@
 #include "Game/Player.h"
 #include "Map/MapManager.h"
 
+#include <ft2build.h>
+
 irrklang::ISoundEngine* engine;
 
 Game::MapData mapData;
