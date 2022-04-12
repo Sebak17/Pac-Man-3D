@@ -21,5 +21,6 @@ void main(void) {
     float att = -0.25f + (0.01f * d) + (0.002f * d * d);
 
     i_tc = texCoord;
+    //i_nl = -att;
     i_nl = 1;
 }

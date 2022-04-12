@@ -154,16 +154,16 @@
     <None Include="assets\game.json">
       <Filter>Pliki zasobów</Filter>
     </None>
-    <None Include="shaders\f_lambert.glsl">
+    <None Include="assets\shaders\f_lambert.glsl">
       <Filter>Pliki zasobów\Shaders</Filter>
     </None>
-    <None Include="shaders\v_lambert.glsl">
+    <None Include="assets\shaders\f_map.glsl">
       <Filter>Pliki zasobów\Shaders</Filter>
     </None>
-    <None Include="shaders\v_map.glsl">
+    <None Include="assets\shaders\v_lambert.glsl">
       <Filter>Pliki zasobów\Shaders</Filter>
     </None>
-    <None Include="shaders\f_map.glsl">
+    <None Include="assets\shaders\v_map.glsl">
       <Filter>Pliki zasobów\Shaders</Filter>
     </None>
   </ItemGroup>

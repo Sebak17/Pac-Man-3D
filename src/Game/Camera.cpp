@@ -14,51 +14,82 @@ namespace Game {
 	glm::mat4 Camera::getV()
 	{
 
-		return glm::lookAt(pos, pos + DirFront, DirUp);
+		return glm::lookAt(position, position + directionFront, directionUp);
 	}
 
 	void Camera::update()
 	{
-		glm::vec3 newFront;
-		newFront.x = cos(glm::radians(currentPitch)) * cos(glm::radians(currentYaw));
-		newFront.y = sin(glm::radians(currentPitch));
-		newFront.z = cos(glm::radians(currentPitch)) * sin(glm::radians(currentYaw));
-		DirFront = glm::normalize(newFront);
+		vec3 dirFrontTmp = directionFront;
+		dirFrontTmp.y = 0;
 
-		vec3 newPos = pos + (currentSpeedMove * DirFront);
+		vec3 moveVector = (currentSpeedMove * dirFrontTmp) + (glm::normalize(glm::cross(dirFrontTmp, directionUp)) * currentSpeedRotate);
 
-		this->checkWallsCollisions(newPos, pos);
+		if (glm::length(moveVector) > 0.1f) {
+			moveVector /= 1.5;
+		}
+		
 
-		this->pos = newPos;
+		vec3 newPos = position + moveVector;
 
-		currentYaw += currentSpeedRotate;
+		this->checkWallsCollisions(newPos, this->position);
+
+		this->position = newPos;
 	}
 
 	void Camera::move(int key, int action)
 	{
 
 		if (action == GLFW_PRESS) {
-			if (key == GLFW_KEY_LEFT) {
-				currentSpeedRotate = -MAX_SPEED_YAW;
+			if (key == GLFW_KEY_A) {
+				currentSpeedRotate = -MAX_SPEED_POS;
 			}
-			if (key == GLFW_KEY_RIGHT) {
-				currentSpeedRotate = MAX_SPEED_YAW;
+			if (key == GLFW_KEY_D) {
+				currentSpeedRotate = MAX_SPEED_POS;
 			}
-			if (key == GLFW_KEY_UP) {
+			if (key == GLFW_KEY_W) {
 				currentSpeedMove = MAX_SPEED_POS;
 			}
-			if (key == GLFW_KEY_DOWN) {
+			if (key == GLFW_KEY_S) {
 				currentSpeedMove = -MAX_SPEED_POS;
 			}
 		}
 		if (action == GLFW_RELEASE) {
-			if ((key == GLFW_KEY_LEFT && currentSpeedRotate == -MAX_SPEED_YAW) || (key == GLFW_KEY_RIGHT && currentSpeedRotate == MAX_SPEED_YAW)) {
+			if ((key == GLFW_KEY_A && currentSpeedRotate == -MAX_SPEED_POS) || (key == GLFW_KEY_D && currentSpeedRotate == MAX_SPEED_POS)) {
 				currentSpeedRotate = 0;
 			}
-			if ((key == GLFW_KEY_UP && currentSpeedMove == MAX_SPEED_POS) || (key == GLFW_KEY_DOWN && currentSpeedMove == -MAX_SPEED_POS)) {
+			if ((key == GLFW_KEY_W && currentSpeedMove == MAX_SPEED_POS) || (key == GLFW_KEY_S && currentSpeedMove == -MAX_SPEED_POS)) {
 				currentSpeedMove = 0;
 			}
 		}
+
+	}
+
+	void Camera::moveMouse(float posX, float posY)
+	{
+		if (firstMouseMove)
+		{
+			firstMouseMove = false;
+			this->lastMousePos.x = posX;
+			this->lastMousePos.y = posY;
+		}
+
+		float xoffset = (posX - this->lastMousePos.x) * SENSITIVITY;
+		float yoffset = (this->lastMousePos.y - posY) * SENSITIVITY;
+
+
+		this->lastMousePos.x = posX;
+		this->lastMousePos.y = posY;
+		this->currentYaw += xoffset;
+		this->currentPitch += yoffset;
+
+		this->currentPitch = std::min(this->currentPitch, 89.0f);
+		this->currentPitch = std::max(this->currentPitch, -89.0f);
+
+		glm::vec3 front;
+		front.x = cos(glm::radians(this->currentYaw)) * cos(glm::radians(this->currentPitch));
+		front.y = sin(glm::radians(this->currentPitch));
+		front.z = sin(glm::radians(this->currentYaw)) * cos(glm::radians(this->currentPitch));
+		directionFront = glm::normalize(front);
 
 	}
 
@@ -164,7 +195,7 @@ namespace Game {
 	{
 		for (auto& ghost : mapData.ghosts)
 		{
-			float d = distance(this->pos, ghost.curPosition);
+			float d = distance(this->position, ghost.curPosition);
 			if (d < 1.1f) {
 				return true;
 			}
@@ -181,7 +212,7 @@ namespace Game {
 				continue;
 			}
 
-			float d = distance(this->pos, coin.position);
+			float d = distance(this->position, coin.position);
 			if (d < 1.0f) {
 				coin.collected = true;
 				return true;

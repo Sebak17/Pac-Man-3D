@@ -1,6 +1,9 @@
 #define GLM_FORCE_RADIANS
 #define GLM_FORCE_SWIZZLE
 
+#define WINDOW_WIDTH 1600
+#define WINDOW_HEIGHT 800
+
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
@@ -54,6 +57,11 @@ void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods
 
 }
 
+void mouseCallback(GLFWwindow* window, double xPos, double yPos)
+{
+	camera.moveMouse((float) xPos, (float) yPos);
+}
+
 void initOpenGLProgram(GLFWwindow* window)
 {
 	engine = irrklang::createIrrKlangDevice();
@@ -64,6 +72,7 @@ void initOpenGLProgram(GLFWwindow* window)
 	glEnable(GL_DEPTH_TEST);
 
 	glfwSetKeyCallback(window, keyCallback);
+	glfwSetCursorPosCallback(window, mouseCallback);
 
 	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
@@ -99,7 +108,7 @@ void update(float deltaTime)
 			player.addProtection();
 			player.livesCount--;
 			printf("GHOST!!! Lives: %d\n", player.livesCount);
-			//engine->play2D("assets/sounds/ghost.wav", false);
+			engine->play2D("assets/sounds/ghost.wav", false);
 		}
 
 		if (camera.checkCoinsCollisions()) {
@@ -110,6 +119,10 @@ void update(float deltaTime)
 
 		if (player.livesCount <= 0) {
 			gameManager.status = Game::Status::DEFAT;
+		}
+
+		if (player.points == mapData.coins.size()) {
+			//gameManager.status = Game::Status::VICTORY;
 		}
 	}
 
@@ -122,7 +135,7 @@ void drawScene(GLFWwindow* window)
 
 
 	glm::mat4 V = camera.getV();
-	glm::mat4 P = glm::perspective(glm::radians(50.0f), 2.0f, 0.1f, 50.0f);
+	glm::mat4 P = glm::perspective(glm::radians(50.0f), (float) WINDOW_WIDTH / WINDOW_HEIGHT, 0.1f, 50.0f);
 	glm::mat4 M = glm::mat4(1.0f);
 
 	if (gameManager.status == Game::Status::PLAYING)
@@ -177,7 +190,7 @@ int main(void)
 
 	glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 
-	window = glfwCreateWindow(1600, 800, "Pac-Man 3D", NULL, NULL);
+	window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Pac-Man 3D", NULL, NULL);
 
 	if (!window) {
 		fprintf(stderr, "Nie można utworzyć okna.\n");

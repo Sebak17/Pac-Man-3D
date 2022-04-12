@@ -57,10 +57,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\game.json" />
-    <None Include="shaders\f_lambert.glsl" />
-    <None Include="shaders\f_map.glsl" />
-    <None Include="shaders\v_lambert.glsl" />
-    <None Include="shaders\v_map.glsl" />
+    <None Include="assets\shaders\f_lambert.glsl" />
+    <None Include="assets\shaders\f_map.glsl" />
+    <None Include="assets\shaders\v_lambert.glsl" />
+    <None Include="assets\shaders\v_map.glsl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

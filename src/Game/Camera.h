@@ -4,6 +4,8 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
+#include <algorithm>
+
 #include "../constants.h"
 #include "Loader.h"
 
@@ -12,15 +14,15 @@ namespace Game {
 	using namespace std;
 	using namespace glm;
 
-	const float MAX_SPEED_POS = PI / 30;
-	const float MAX_SPEED_YAW = PI / 2 * 1.35f;
+	const float SENSITIVITY = 0.1f;
+	const float MAX_SPEED_POS = PI / 40;
 
 	class Camera {
 
 		public:
-			glm::vec3 pos = glm::vec3(0.0f, 0.0f, 0.0f);
-			glm::vec3 DirFront = glm::vec3(0.0f, 0.0f, 1.0f);
-			glm::vec3 DirUp = glm::vec3(0.0f, 1.0f, 0.0f);
+			glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f);
+			glm::vec3 directionFront = glm::vec3(1.0f, 0.0f, 0.0f);
+			glm::vec3 directionUp = glm::vec3(0.0f, 1.0f, 0.0f);
 
 			Camera(Map::MapManager& mapManager, Game::MapData& mapData);
 			virtual ~Camera();
@@ -28,6 +30,7 @@ namespace Game {
 			virtual glm::mat4 getV();
 			virtual void update();
 			virtual void move(int key, int action);
+			virtual void moveMouse(float posX, float posY);
 
 			virtual bool checkGhostsCollisions();
 			virtual bool checkCoinsCollisions();
@@ -41,6 +44,9 @@ namespace Game {
 			float currentSpeedMove = 0.0f;
 			float currentYaw = 0.0f;
 			float currentPitch = 0.0f;
+
+			glm::vec2 lastMousePos;
+			bool firstMouseMove = true;
 
 			void checkWallsCollisions(glm::vec3& newPos, glm::vec3& pos);
 	};
