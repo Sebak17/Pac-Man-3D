@@ -24,8 +24,8 @@ ShaderProgram* spLambert;
 ShaderProgram* spMap;
 
 void initShaders() {
-	spLambert = new ShaderProgram("shaders/v_lambert.glsl", NULL, "shaders/f_lambert.glsl");
-	spMap = new ShaderProgram("shaders/v_map.glsl", NULL, "shaders/f_map.glsl");
+	spLambert = new ShaderProgram("assets/shaders/v_lambert.glsl", NULL, "assets/shaders/f_lambert.glsl");
+	spMap = new ShaderProgram("assets/shaders/v_map.glsl", NULL, "assets/shaders/f_map.glsl");
 }
 
 void freeShaders() {

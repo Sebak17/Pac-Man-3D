@@ -6,8 +6,8 @@
 #include <fstream>
 #include <iostream>
 
-#include "libs/json.hpp"
-#include "libs/lodepng.h"
+#include "lib/json.hpp"
+#include "lib/lodepng.h"
 
 #include "../Map/MapManager.h"
 

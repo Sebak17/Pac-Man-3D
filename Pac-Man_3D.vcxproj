@@ -19,8 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="libs\json.hpp" />
-    <ClInclude Include="libs\lodepng.h" />
+    <ClInclude Include="lib\json.hpp" />
+    <ClInclude Include="lib\lodepng.h" />
     <ClInclude Include="src\constants.h" />
     <ClInclude Include="src\Entity\Coin.h" />
     <ClInclude Include="src\Entity\Ghost.h" />
@@ -38,7 +38,7 @@
     <ClInclude Include="src\shaderprogram.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="libs\lodepng.cpp" />
+    <ClCompile Include="lib\lodepng.cpp" />
     <ClCompile Include="src\Entity\Coin.cpp" />
     <ClCompile Include="src\Entity\Ghost.cpp" />
     <ClCompile Include="src\Game\Camera.cpp" />
@@ -135,12 +135,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>glew\include;glfw\include;.;irrKlang\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include\glew;include\glfw;.;include\irrKlang;include\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>irrKlang\lib;glew\lib;glfw\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>lib\glew;lib\glfw;lib\irrKlang;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glew32.lib;glfw3.lib;opengl32.lib;irrKlang.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>MSVCRT;LIBCMT;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
     </Link>
