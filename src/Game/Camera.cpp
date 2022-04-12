@@ -69,8 +69,8 @@ namespace Game {
 
 			if (wall.wallDirection == Map::WallDirection::NORTH) {
 
-				float dX = abs((wall.position.x + 1) - newPos.x);
-				if ((newPos.z >= (wall.position.z - 1) && newPos.z <= (wall.position.z + 1)) && dX <= 0.25) {
+				float dX = abs((wall.position.x + 0.9f) - newPos.x);
+				if ((newPos.z >= (wall.position.z - 1.15f) && newPos.z <= (wall.position.z + 1.15f)) && dX <= 0.15f) {
 					newPos.x = prevPos.x;
 					break;
 				}
@@ -79,8 +79,8 @@ namespace Game {
 
 			if (wall.wallDirection == Map::WallDirection::SOUTH) {
 
-				float dX = abs((wall.position.x - 1) - newPos.x);
-				if ((newPos.z >= (wall.position.z - 1) && newPos.z <= (wall.position.z + 1)) && dX <= 0.3) {
+				float dX = abs((wall.position.x - 0.9f) - newPos.x);
+				if ((newPos.z >= (wall.position.z - 1.15f) && newPos.z <= (wall.position.z + 1.15f)) && dX <= 0.2f) {
 					newPos.x = prevPos.x;
 					break;
 				}
@@ -90,8 +90,8 @@ namespace Game {
 			// ------------------------[ WALLS SIDES ]-----------------------
 			if (wall.wallDirection == Map::WallDirection::EAST) {
 
-				float dX = abs(wall.position.x - newPos.x);
-				if ((newPos.z >= ((wall.position.z + 1) - 0.2) && newPos.z <= ((wall.position.z + 1) + 0.1)) && dX <= 1.15f) {
+				float dX = abs(wall.position.x - newPos.x) - 1.0f;
+				if ((newPos.z >= ((wall.position.z + 1.0f) - 0.25f) && newPos.z <= ((wall.position.z + 1.0f) + 0.05f)) && dX <= 0.15f) {
 					newPos.x = prevPos.x;
 					break;
 				}
@@ -100,8 +100,8 @@ namespace Game {
 
 			if (wall.wallDirection == Map::WallDirection::WEST) {
 
-				float dX = abs(wall.position.x - newPos.x);
-				if ((newPos.z >= ((wall.position.z - 1) - 0.15) && newPos.z <= ((wall.position.z - 1) + 0.2)) && dX <= 1.15f) {
+				float dX = abs(wall.position.x - newPos.x) - 1.0f;
+				if ((newPos.z >= ((wall.position.z - 1.0f) - 0.05f) && newPos.z <= ((wall.position.z - 1.0f) + 0.25f)) && dX <= 0.15f) {
 					newPos.x = prevPos.x;
 					break;
 				}
@@ -113,20 +113,20 @@ namespace Game {
 
 		for (auto& wall : mapManager.walls) {
 
-			if (wall.wallDirection == Map::WallDirection::WEST) {
+			if (wall.wallDirection == Map::WallDirection::EAST) {
 
-				float dZ = abs((wall.position.z - 1) - newPos.z);
-				if ((newPos.x >= (wall.position.x - 1) && newPos.x <= (wall.position.x + 1)) && dZ <= 0.25) {
+				float dZ = abs((wall.position.z + 0.9f) - newPos.z);
+				if ((newPos.x >= (wall.position.x - 1.15f) && newPos.x <= (wall.position.x + 1.15f)) && dZ <= 0.2f) {
 					newPos.z = prevPos.z;
 					break;
 				}
 
 			}
 
-			if (wall.wallDirection == Map::WallDirection::EAST) {
+			if (wall.wallDirection == Map::WallDirection::WEST) {
 
-				float dZ = abs((wall.position.z + 1) - newPos.z);
-				if ((newPos.x >= (wall.position.x - 1) && newPos.x <= (wall.position.x + 1)) && dZ <= 0.25) {
+				float dZ = abs((wall.position.z - 0.9f) - newPos.z);
+				if ((newPos.x >= (wall.position.x - 1.15f) && newPos.x <= (wall.position.x + 1.15f)) && dZ <= 0.2f) {
 					newPos.z = prevPos.z;
 					break;
 				}
@@ -136,8 +136,8 @@ namespace Game {
 			// ------------------------[ WALLS SIDES ]-----------------------
 			if (wall.wallDirection == Map::WallDirection::NORTH) {
 
-				float dZ = abs(wall.position.z - newPos.z);
-				if ((newPos.x >= ((wall.position.x + 1) - 0.2) && newPos.x <= ((wall.position.x + 1) + 0.1)) && dZ <= 1.15f) {
+				float dZ = abs(wall.position.z - newPos.z) - 1.0f;
+				if ((newPos.x >= ((wall.position.x + 1.0f) - 0.22f) && newPos.x <= ((wall.position.x + 1.0f) + 0.05f)) && dZ <= 0.15f) {
 					newPos.z = prevPos.z;
 					break;
 				}
@@ -146,8 +146,8 @@ namespace Game {
 
 			if (wall.wallDirection == Map::WallDirection::SOUTH) {
 
-				float dZ = abs(wall.position.z - newPos.z);
-				if ((newPos.x >= ((wall.position.x - 1) - 0.2) && newPos.x <= ((wall.position.x - 1) + 0.3)) && dZ <= 1.15f) {
+				float dZ = abs(wall.position.z - newPos.z) - 1.0f;
+				if ((newPos.x >= ((wall.position.x - 1.0f) - 0.05f) && newPos.x <= ((wall.position.x - 1.0f) + 0.27f)) && dZ <= 0.15f) {
 					newPos.z = prevPos.z;
 					break;
 				}

@@ -99,7 +99,7 @@ void update(float deltaTime)
 			player.addProtection();
 			player.livesCount--;
 			printf("GHOST!!! Lives: %d\n", player.livesCount);
-			engine->play2D("assets/sounds/ghost.wav", false);
+			//engine->play2D("assets/sounds/ghost.wav", false);
 		}
 
 		if (camera.checkCoinsCollisions()) {
