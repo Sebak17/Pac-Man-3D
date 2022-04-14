@@ -81,6 +81,8 @@ void initOpenGLProgram(GLFWwindow* window)
 	gameLoader.loadTextures();
 
 	mapData = gameLoader.loadMap("assets/game.json");
+
+	camera.loadData();
 }
 
 

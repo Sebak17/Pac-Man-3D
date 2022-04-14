@@ -4,7 +4,6 @@ namespace Game {
 	
 	Camera::Camera(Map::MapManager& mapManager, Game::MapData& mapData) : mapManager(mapManager), mapData(mapData)
 	{
-		
 	}
 
 	Camera::~Camera()
@@ -15,6 +14,11 @@ namespace Game {
 	{
 
 		return glm::lookAt(position, position + directionFront, directionUp);
+	}
+
+	void Camera::loadData()
+	{
+		this->position = this->mapData.playerStartPos;
 	}
 
 	void Camera::update()

@@ -61,6 +61,7 @@ namespace Entity {
 			M = glm::rotate(M, this->rotate.z * PI / 180.0f, glm::vec3(0.0f, 0.0f, 1.0f));
 		}
 
+		M = glm::translate(M, glm::vec3(0.0f, -0.55f, 0.0f));
 
 		M = glm::scale(M, glm::vec3(0.4f, 0.4f, 0.4f));
 

@@ -5,6 +5,8 @@
 #include <vector>
 #include <fstream>
 #include <iostream>
+#include <stdlib.h>
+#include <time.h>
 
 #include "lib/json.hpp"
 #include "lib/lodepng.h"
@@ -26,7 +28,11 @@ namespace Game {
 
 
 	struct MapData {
+		glm::vec3 playerStartPos;
+
+		int ghostsAmount;
 		std::vector<Entity::Ghost> ghosts;
+		int coinsAmount;
 		std::vector<Entity::Coin> coins;
 	};
 
@@ -41,6 +47,7 @@ namespace Game {
 			void destroyTextures();
 
 			Game::MapData loadMap(const char* filename);
+			void generateMap(MapData& mapData);
 
 			GLuint readTexture(const char* filename);
 

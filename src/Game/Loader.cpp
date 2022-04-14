@@ -4,6 +4,7 @@ namespace Game {
 
 	Loader::Loader(Map::MapManager& mapManager): mapManager(mapManager)
 	{
+		srand(time(NULL));
 	}
 
 	Loader::~Loader()
@@ -31,6 +32,12 @@ namespace Game {
 		std::ifstream file(filename);
 		json gameData;
 		file >> gameData;
+
+
+		float playerStartPosX = std::stof(gameData.find("player").value()["x"].dump());
+		float playerStartPosZ = std::stof(gameData.find("player").value()["z"].dump());
+
+		mapData.playerStartPos = glm::vec3(playerStartPosX * 2.0f, 0.0f, playerStartPosZ * 2.0f);
 
 		auto mapDataInfo = gameData.find("map");
 		
@@ -117,34 +124,55 @@ namespace Game {
 
 
 		// --------------------------[ GHOSTS ]--------------------------
-		auto ghostsElements = gameData.find("ghosts");
-
-		for (const auto& ghostElement : ghostsElements.value().items())
-		{
-			float ghostPosX = std::stof(ghostElement.value()["position"]["x"].dump());
-			float ghostPosZ = std::stof(ghostElement.value()["position"]["z"].dump());
-
-			Entity::Ghost ghost(glm::vec3(ghostPosX * 2.0f, 0.0f, ghostPosZ * 2.0f), mapManager);
-			mapData.ghosts.push_back(ghost);
-		}
+		mapData.ghostsAmount = gameData.find("ghosts").value();
 		// --------------------------------------------------------------
 
 
 		// ---------------------------[ COINS ]--------------------------
-		auto coinsElements = gameData.find("coins");
-
-		for (const auto& coinElement : coinsElements.value().items())
-		{
-			float coinPosX = std::stof(coinElement.value()["position"]["x"].dump());
-			float coinPosZ = std::stof(coinElement.value()["position"]["z"].dump());
-
-			Entity::Coin coin(glm::vec3(coinPosX * 2.0f, -0.55f, coinPosZ * 2.0f));
-			mapData.coins.push_back(coin);
-		}
+		mapData.coinsAmount = gameData.find("coins").value();
 		// --------------------------------------------------------------
 
+		this->generateMap(mapData);
 
 		return mapData;
+	}
+
+	void Loader::generateMap(MapData& mapData)
+	{
+		std::vector<glm::vec3> availableSlots;
+
+		for (int x = 0; x < mapManager.sizeX; x++) {
+			for (int z = 0; z < mapManager.sizeZ; z++) {
+				
+				float posX = x * 2.0f;
+				float posZ = z * 2.0f;
+
+				if(posX == mapData.playerStartPos.x && posZ == mapData.playerStartPos.z) {
+					continue;
+				}
+
+				availableSlots.push_back(glm::vec3(posX, 0.0f, posZ));
+			}
+		}
+
+		for (int i = 0; i < mapData.coinsAmount; i++) {
+			glm::vec3 pos = availableSlots[rand() % availableSlots.size()];
+
+			Entity::Coin coin(pos);
+			mapData.coins.push_back(coin);
+
+			availableSlots.erase(std::remove(availableSlots.begin(), availableSlots.end(), pos), availableSlots.end());
+		}
+
+		for (int i = 0; i < mapData.ghostsAmount; i++) {
+			glm::vec3 pos = availableSlots[rand() % availableSlots.size()];
+
+			Entity::Ghost ghost(pos, mapManager);
+			mapData.ghosts.push_back(ghost);
+
+			availableSlots.erase(std::remove(availableSlots.begin(), availableSlots.end(), pos), availableSlots.end());
+		}
+
 	}
 
 	GLuint Loader::readTexture(const char* filename)

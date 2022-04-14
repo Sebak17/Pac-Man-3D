@@ -20,7 +20,7 @@ namespace Game {
 	class Camera {
 
 		public:
-			glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f);
+			glm::vec3 position;
 			glm::vec3 directionFront = glm::vec3(1.0f, 0.0f, 0.0f);
 			glm::vec3 directionUp = glm::vec3(0.0f, 1.0f, 0.0f);
 
@@ -28,6 +28,7 @@ namespace Game {
 			virtual ~Camera();
 
 			virtual glm::mat4 getV();
+			virtual void loadData();
 			virtual void update();
 			virtual void move(int key, int action);
 			virtual void moveMouse(float posX, float posY);

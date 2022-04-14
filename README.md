@@ -21,7 +21,7 @@ ToDo
 - [ ] Add light sources and update shaders to create darkness
 - [ ] Update and beautify textures of walls and floors
 - [ ] Add a mechanism of eating ghosts
-- [ ] Randomize coins spawn
+- [X] Randomize ghosts and coins spawn
 
 Screenshots
 ----------
