@@ -38,7 +38,6 @@ namespace Entity {
 
 	void Ghost::move(float deltaTime)
 	{
-		float speed = 1.5f * deltaTime;
 
 		if (curPosition.x == dstPosition.x && curPosition.z == dstPosition.z) {
 			dstPosition = this->findNextPosition();
@@ -46,7 +45,18 @@ namespace Entity {
 
 		if (curDirection != dstDirection) {
 		
-			rotate.y += deltaTime * 100;
+			if ((curDirection == 0 && dstDirection == 3) || curDirection - 1 == dstDirection) {
+				rotate.y -= deltaTime * SPEED_ROTATE;
+
+				if (rotate.y < 0) {
+					rotate.y += 360;
+				}
+			}
+			else {
+				rotate.y += deltaTime * SPEED_ROTATE;
+			}
+
+			
 			rotate.y = fmodf(rotate.y, 360);
 
 			float dstAngle = dstDirection * 90.0f;
@@ -57,6 +67,8 @@ namespace Entity {
 
 		}
 		else {
+
+			float speed = SPEED_MOVE * deltaTime;
 
 			if (dstPosition.x > curPosition.x) {
 

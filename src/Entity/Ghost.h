@@ -10,6 +10,9 @@
 #include "../Model/ModelGhost.h"
 #include "../Map/MapManager.h"
 
+#define SPEED_ROTATE 100
+#define SPEED_MOVE   1.5
+
 namespace Entity {
 
 	using namespace std;
