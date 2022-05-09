@@ -99,6 +99,9 @@
     <ClInclude Include="lib\lodepng.h">
       <Filter>Pliki nagłówkowe\Libraries</Filter>
     </ClInclude>
+    <ClInclude Include="src\Game\LivesManager.h">
+      <Filter>Pliki nagłówkowe\Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Game\Camera.cpp">
@@ -148,6 +151,9 @@
     </ClCompile>
     <ClCompile Include="lib\lodepng.cpp">
       <Filter>Pliki źródłowe\Libraries</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game\LivesManager.cpp">
+      <Filter>Pliki źródłowe\Game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

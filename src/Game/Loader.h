@@ -40,6 +40,8 @@ namespace Game {
 	class Loader {
 
 		public:
+			GLuint textureLife;
+
 			Loader(Map::MapManager& mapManager);
 			virtual ~Loader();
 

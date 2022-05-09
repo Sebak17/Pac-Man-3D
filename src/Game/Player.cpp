@@ -13,7 +13,7 @@ namespace Game {
 
 	void Player::setNewGame()
 	{
-		this->livesCount = 100;
+		this->livesCount = 3;
 		this->points = 0;
 
 		this->protectionTime = 0;

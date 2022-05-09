@@ -12,6 +12,7 @@
 #include "shaderprogram.h"
 #include "Game/Camera.h"
 #include "Game/GameManager.h"
+#include "Game/LivesManager.h"
 #include "Game/Loader.h"
 #include "Game/Player.h"
 #include "Map/MapManager.h"
@@ -29,6 +30,7 @@ Game::Player player;
 Game::Loader gameLoader(mapManager);
 Game::Camera camera(mapManager, mapData);
 
+Game::LivesManager* livesManager;
 
 void error_callback(int error, const char* description)
 {
@@ -72,6 +74,8 @@ void initOpenGLProgram(GLFWwindow* window)
 
 	glClearColor(0, 0, 0, 1);
 	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	glfwSetKeyCallback(window, keyCallback);
 	glfwSetCursorPosCallback(window, mouseCallback);
@@ -83,6 +87,8 @@ void initOpenGLProgram(GLFWwindow* window)
 	mapData = gameLoader.loadMap("assets/game.json");
 
 	camera.loadData();
+
+	livesManager = new Game::LivesManager(player, gameLoader.textureLife);
 }
 
 
@@ -91,6 +97,8 @@ void freeOpenGLProgram(GLFWwindow* window)
 	freeShaders();
 
 	gameLoader.destroyTextures();
+
+	delete livesManager;
 }
 
 void update(float deltaTime)
@@ -173,6 +181,17 @@ void drawScene(GLFWwindow* window)
 		for (auto& torch : mapManager.torches) {
 			torch.draw(spMap, M);
 		}
+
+
+
+		glDisable(GL_DEPTH_TEST);
+		glm::mat4 V2 = glm::lookAt(glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+
+		spMap->use();
+		glUniformMatrix4fv(spMap->u("P"), 1, false, glm::value_ptr(P));
+		glUniformMatrix4fv(spMap->u("V"), 1, false, glm::value_ptr(V2));
+		livesManager->render(spMap);
+		glEnable(GL_DEPTH_TEST);
 
 	}
 
