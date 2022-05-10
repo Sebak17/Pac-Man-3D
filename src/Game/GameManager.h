@@ -8,7 +8,7 @@ namespace Game {
 	enum Status {
 		MENU,
 		PLAYING,
-		DEFAT,
+		DEFEAT,
 		VICTORY,
 	};
 

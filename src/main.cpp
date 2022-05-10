@@ -13,6 +13,7 @@
 #include "Game/Camera.h"
 #include "Game/GameManager.h"
 #include "Game/HudManager.h"
+#include "Game/SceneManager.h"
 #include "Game/Loader.h"
 #include "Game/Player.h"
 #include "Map/MapManager.h"
@@ -31,6 +32,7 @@ Game::Loader gameLoader(mapManager);
 Game::Camera camera(mapManager, mapData);
 
 Game::HudManager* hudManager;
+Game::SceneManager* sceneManager;
 
 void error_callback(int error, const char* description)
 {
@@ -89,6 +91,7 @@ void initOpenGLProgram(GLFWwindow* window)
 	camera.loadData();
 
 	hudManager = new Game::HudManager(player, gameLoader.textureLife, gameLoader.textureShield);
+	sceneManager = new Game::SceneManager();
 }
 
 
@@ -99,6 +102,7 @@ void freeOpenGLProgram(GLFWwindow* window)
 	gameLoader.destroyTextures();
 
 	delete hudManager;
+	delete sceneManager;
 }
 
 void update(float deltaTime)
@@ -130,11 +134,11 @@ void update(float deltaTime)
 		}
 
 		if (player.livesCount <= 0) {
-			gameManager.status = Game::Status::DEFAT;
+			gameManager.status = Game::Status::DEFEAT;
 		}
 
 		if (player.points == mapData.coins.size()) {
-			//gameManager.status = Game::Status::VICTORY;
+			gameManager.status = Game::Status::VICTORY;
 		}
 	}
 
@@ -182,11 +186,33 @@ void drawScene(GLFWwindow* window)
 			torch.draw(spMap, M);
 		}
 
-		spMap->use();
-		glUniformMatrix4fv(spMap->u("P"), 1, false, glm::value_ptr(P));
-		glUniformMatrix4fv(spMap->u("V"), 1, false, glm::value_ptr(camera.getDefaultV()));
-		hudManager->render(spMap);
+		spHud->use();
+		glUniformMatrix4fv(spHud->u("P"), 1, false, glm::value_ptr(P));
+		glUniformMatrix4fv(spHud->u("V"), 1, false, glm::value_ptr(camera.getDefaultV()));
+		hudManager->render(spHud);
 
+	}
+	else {
+	
+		spHud->use();
+		glUniformMatrix4fv(spHud->u("P"), 1, false, glm::value_ptr(P));
+		glUniformMatrix4fv(spHud->u("V"), 1, false, glm::value_ptr(camera.getDefaultV()));
+
+		if (gameManager.status == Game::Status::MENU)
+		{
+			sceneManager->renderMenu(spHud);
+		}
+
+		if (gameManager.status == Game::Status::DEFEAT)
+		{
+			sceneManager->renderVictory(spHud);
+		}
+
+		if (gameManager.status == Game::Status::VICTORY)
+		{
+			sceneManager->renderVictory(spHud);
+		}
+	
 	}
 
     glfwSwapBuffers(window);

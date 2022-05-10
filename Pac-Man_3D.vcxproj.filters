@@ -102,6 +102,9 @@
     <ClInclude Include="src\Game\HudManager.h">
       <Filter>Pliki nagłówkowe\Game</Filter>
     </ClInclude>
+    <ClInclude Include="src\Game\SceneManager.h">
+      <Filter>Pliki nagłówkowe\Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Game\Camera.cpp">
@@ -155,6 +158,9 @@
     <ClCompile Include="src\Game\HudManager.cpp">
       <Filter>Pliki źródłowe\Game</Filter>
     </ClCompile>
+    <ClCompile Include="src\Game\SceneManager.cpp">
+      <Filter>Pliki źródłowe\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\game.json">
@@ -170,6 +176,12 @@
       <Filter>Pliki zasobów\Shaders</Filter>
     </None>
     <None Include="assets\shaders\v_map.glsl">
+      <Filter>Pliki zasobów\Shaders</Filter>
+    </None>
+    <None Include="assets\shaders\f_hud.glsl">
+      <Filter>Pliki zasobów\Shaders</Filter>
+    </None>
+    <None Include="assets\shaders\v_hud.glsl">
       <Filter>Pliki zasobów\Shaders</Filter>
     </None>
   </ItemGroup>

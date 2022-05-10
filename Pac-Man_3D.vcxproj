@@ -29,6 +29,7 @@
     <ClInclude Include="src\Game\HudManager.h" />
     <ClInclude Include="src\Game\Loader.h" />
     <ClInclude Include="src\Game\Player.h" />
+    <ClInclude Include="src\Game\SceneManager.h" />
     <ClInclude Include="src\Map\MapManager.h" />
     <ClInclude Include="src\Map\TileFloor.h" />
     <ClInclude Include="src\Map\TileWall.h" />
@@ -47,6 +48,7 @@
     <ClCompile Include="src\Game\HudManager.cpp" />
     <ClCompile Include="src\Game\Loader.cpp" />
     <ClCompile Include="src\Game\Player.cpp" />
+    <ClCompile Include="src\Game\SceneManager.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Map\MapManager.cpp" />
     <ClCompile Include="src\Map\TileFloor.cpp" />
@@ -59,8 +61,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\game.json" />
+    <None Include="assets\shaders\f_hud.glsl" />
     <None Include="assets\shaders\f_lambert.glsl" />
     <None Include="assets\shaders\f_map.glsl" />
+    <None Include="assets\shaders\v_hud.glsl" />
     <None Include="assets\shaders\v_lambert.glsl" />
     <None Include="assets\shaders\v_map.glsl" />
   </ItemGroup>

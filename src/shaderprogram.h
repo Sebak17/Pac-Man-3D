@@ -47,6 +47,7 @@ public:
 
 extern ShaderProgram* spLambert;
 extern ShaderProgram* spMap;
+extern ShaderProgram* spHud;
 
 void initShaders();
 void freeShaders();
