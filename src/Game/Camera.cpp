@@ -12,8 +12,12 @@ namespace Game {
 
 	glm::mat4 Camera::getV()
 	{
-
 		return glm::lookAt(position, position + directionFront, directionUp);
+	}
+
+	glm::mat4 Camera::getDefaultV()
+	{
+		return glm::lookAt(glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	}
 
 	void Camera::loadData()

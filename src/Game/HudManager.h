@@ -1,5 +1,5 @@
-#ifndef LIVES_MANAGER_H
-#define LIVES_MANAGER_H
+#ifndef HUD_MANAGER_H
+#define HUD_MANAGER_H
 
 #include <glm/gtc/type_ptr.hpp>
 #include "../constants.h"
@@ -10,18 +10,18 @@ namespace Game {
 
 	using namespace std;
 
-	class LivesManager {
+	class HudManager {
 
 		public:
-			LivesManager(Game::Player& player, GLuint texture);
-			virtual ~LivesManager();
+			HudManager(Game::Player& player, GLuint textureLife, GLuint textureShield);
+			virtual ~HudManager();
 
 			virtual void render(ShaderProgram* shaderProgram);
 
 		private:
 			Game::Player& player;
 
-			GLuint texture;
+			GLuint textureLife, textureShield;
 
 	};
 

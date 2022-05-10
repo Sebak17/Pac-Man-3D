@@ -12,7 +12,7 @@
 #include "shaderprogram.h"
 #include "Game/Camera.h"
 #include "Game/GameManager.h"
-#include "Game/LivesManager.h"
+#include "Game/HudManager.h"
 #include "Game/Loader.h"
 #include "Game/Player.h"
 #include "Map/MapManager.h"
@@ -30,7 +30,7 @@ Game::Player player;
 Game::Loader gameLoader(mapManager);
 Game::Camera camera(mapManager, mapData);
 
-Game::LivesManager* livesManager;
+Game::HudManager* hudManager;
 
 void error_callback(int error, const char* description)
 {
@@ -88,7 +88,7 @@ void initOpenGLProgram(GLFWwindow* window)
 
 	camera.loadData();
 
-	livesManager = new Game::LivesManager(player, gameLoader.textureLife);
+	hudManager = new Game::HudManager(player, gameLoader.textureLife, gameLoader.textureShield);
 }
 
 
@@ -98,7 +98,7 @@ void freeOpenGLProgram(GLFWwindow* window)
 
 	gameLoader.destroyTextures();
 
-	delete livesManager;
+	delete hudManager;
 }
 
 void update(float deltaTime)
@@ -182,19 +182,12 @@ void drawScene(GLFWwindow* window)
 			torch.draw(spMap, M);
 		}
 
-
-
-		glDisable(GL_DEPTH_TEST);
-		glm::mat4 V2 = glm::lookAt(glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-
 		spMap->use();
 		glUniformMatrix4fv(spMap->u("P"), 1, false, glm::value_ptr(P));
-		glUniformMatrix4fv(spMap->u("V"), 1, false, glm::value_ptr(V2));
-		livesManager->render(spMap);
-		glEnable(GL_DEPTH_TEST);
+		glUniformMatrix4fv(spMap->u("V"), 1, false, glm::value_ptr(camera.getDefaultV()));
+		hudManager->render(spMap);
 
 	}
-
 
     glfwSwapBuffers(window);
 }

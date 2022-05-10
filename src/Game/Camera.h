@@ -28,6 +28,8 @@ namespace Game {
 			virtual ~Camera();
 
 			virtual glm::mat4 getV();
+			virtual glm::mat4 getDefaultV();
+
 			virtual void loadData();
 			virtual void update();
 			virtual void move(int key, int action);

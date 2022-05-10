@@ -99,7 +99,7 @@
     <ClInclude Include="lib\lodepng.h">
       <Filter>Pliki nagłówkowe\Libraries</Filter>
     </ClInclude>
-    <ClInclude Include="src\Game\LivesManager.h">
+    <ClInclude Include="src\Game\HudManager.h">
       <Filter>Pliki nagłówkowe\Game</Filter>
     </ClInclude>
   </ItemGroup>
@@ -152,7 +152,7 @@
     <ClCompile Include="lib\lodepng.cpp">
       <Filter>Pliki źródłowe\Libraries</Filter>
     </ClCompile>
-    <ClCompile Include="src\Game\LivesManager.cpp">
+    <ClCompile Include="src\Game\HudManager.cpp">
       <Filter>Pliki źródłowe\Game</Filter>
     </ClCompile>
   </ItemGroup>
