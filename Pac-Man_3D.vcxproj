@@ -24,6 +24,7 @@
     <ClInclude Include="src\constants.h" />
     <ClInclude Include="src\Entity\Coin.h" />
     <ClInclude Include="src\Entity\Ghost.h" />
+    <ClInclude Include="src\Entity\SpecialCoin.h" />
     <ClInclude Include="src\Game\Camera.h" />
     <ClInclude Include="src\Game\GameManager.h" />
     <ClInclude Include="src\Game\HudManager.h" />
@@ -43,6 +44,7 @@
     <ClCompile Include="lib\lodepng.cpp" />
     <ClCompile Include="src\Entity\Coin.cpp" />
     <ClCompile Include="src\Entity\Ghost.cpp" />
+    <ClCompile Include="src\Entity\SpecialCoin.cpp" />
     <ClCompile Include="src\Game\Camera.cpp" />
     <ClCompile Include="src\Game\GameManager.cpp" />
     <ClCompile Include="src\Game\HudManager.cpp" />

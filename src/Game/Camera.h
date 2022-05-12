@@ -35,8 +35,9 @@ namespace Game {
 			virtual void move(int key, int action);
 			virtual void moveMouse(float posX, float posY);
 
-			virtual bool checkGhostsCollisions();
+			virtual Entity::Ghost* checkGhostsCollisions();
 			virtual bool checkCoinsCollisions();
+			virtual bool checkSpecialCoinsCollisions();
 
 
 		private:

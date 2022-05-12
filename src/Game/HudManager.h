@@ -13,7 +13,7 @@ namespace Game {
 	class HudManager {
 
 		public:
-			HudManager(Game::Player& player, GLuint textureLife, GLuint textureShield);
+			HudManager(Game::Player& player, GLuint textureLife, GLuint textureShield, GLuint textureSword);
 			virtual ~HudManager();
 
 			virtual void render(ShaderProgram* shaderProgram);
@@ -21,7 +21,7 @@ namespace Game {
 		private:
 			Game::Player& player;
 
-			GLuint textureLife, textureShield;
+			GLuint textureLife, textureShield, textureSword;
 
 	};
 

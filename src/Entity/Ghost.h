@@ -39,6 +39,8 @@ namespace Entity {
 			virtual void draw(ShaderProgram* shaderProgram, glm::mat4 M);
 			virtual void move(float deltaTime);
 
+			virtual void revive();
+
 		private:
 			Map::MapManager& mapManager;
 

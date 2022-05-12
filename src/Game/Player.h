@@ -22,8 +22,12 @@ namespace Game {
 			bool isProtected();
 			void addProtection();
 
+			bool isAttackMode();
+			void addAttackMode();
+
 		private:
 			long long protectionTime;
+			long long attackModeTime;
 
 	};
 

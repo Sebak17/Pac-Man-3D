@@ -18,6 +18,7 @@
 #include "../Map/Torch.h"
 #include "../Entity/Ghost.h"
 #include "../Entity/Coin.h"
+#include "../Entity/SpecialCoin.h"
 
 
 namespace Game {
@@ -31,16 +32,20 @@ namespace Game {
 		glm::vec3 playerStartPos;
 
 		int ghostsAmount;
+
 		std::vector<Entity::Ghost> ghosts;
 		int coinsAmount;
 		std::vector<Entity::Coin> coins;
+
+		int specialCoinsAmount;
+		std::vector<Entity::SpecialCoin> specialCoins;
 	};
 
 
 	class Loader {
 
 		public:
-			GLuint textureLife, textureShield;
+			GLuint textureLife, textureShield, textureSword;
 
 			Loader(Map::MapManager& mapManager);
 			virtual ~Loader();

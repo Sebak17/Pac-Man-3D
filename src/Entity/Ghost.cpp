@@ -107,6 +107,19 @@ namespace Entity {
 
 	}
 
+	void Ghost::revive()
+	{
+		int rnd_x = (std::rand() % mapManager.sizeX);
+		int rnd_z = (std::rand() % mapManager.sizeZ);
+
+		this->curPosition = glm::vec3(rnd_x * 2.0f, 0.0f, rnd_z * 2.0f);
+		this->dstPosition = glm::vec3(0.0f, 0.0f, 0.0f);
+		this->rotate = glm::vec3(0.0f, 90.0f, 0.0f);
+
+		this->curDirection = NORTH;
+		this->dstDirection = NONE;
+	}
+
 	glm::mat4 Ghost::getPosition(glm::mat4 M)
 	{
 		M = glm::translate(M, this->curPosition);

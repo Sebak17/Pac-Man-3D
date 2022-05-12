@@ -90,7 +90,7 @@ void initOpenGLProgram(GLFWwindow* window)
 
 	camera.loadData();
 
-	hudManager = new Game::HudManager(player, gameLoader.textureLife, gameLoader.textureShield);
+	hudManager = new Game::HudManager(player, gameLoader.textureLife, gameLoader.textureShield, gameLoader.textureSword);
 	sceneManager = new Game::SceneManager();
 }
 
@@ -120,21 +120,37 @@ void update(float deltaTime)
 			coin.update(deltaTime);
 		}
 
-		if (camera.checkGhostsCollisions() && !player.isProtected()) {
-			player.addProtection();
-			player.livesCount--;
-			printf("GHOST!!! Lives: %d\n", player.livesCount);
-			engine->play2D("assets/sounds/ghost.wav", false);
+		Entity::Ghost* ghost = camera.checkGhostsCollisions();
+		if (ghost != NULL) {
+			if (player.isAttackMode()) {
+				ghost->revive();
+				engine->play2D("assets/sounds/pacman_eatghost.wav", false);
+			}
+			else if (!player.isProtected()) {
+				player.addProtection();
+				player.livesCount--;
+				printf("GHOST!!! Lives: %d\n", player.livesCount);
+				engine->play2D("assets/sounds/ghost.wav", false);
+			}
+
 		}
 
 		if (camera.checkCoinsCollisions()) {
 			player.points++;
 			printf("Points: %d\n", player.points);
-			engine->play2D("assets/sounds/bleep.wav", false);
+			engine->play2D("assets/sounds/pacman_chomp.wav", false);
+		}
+
+		if (camera.checkSpecialCoinsCollisions()) {
+			player.addAttackMode();
+			printf("ATTACK MODE!\n");
+
 		}
 
 		if (player.livesCount <= 0) {
 			gameManager.status = Game::Status::DEFEAT;
+
+			engine->play2D("assets/sounds/pacman_death.wav", false);
 		}
 
 		if (player.points == mapData.coins.size()) {
@@ -167,6 +183,10 @@ void drawScene(GLFWwindow* window)
 
 		for (auto& coin : mapData.coins) {
 			coin.draw(spLambert, M);
+		}
+
+		for (auto& specialCoin : mapData.specialCoins) {
+			specialCoin.draw(spLambert, M);
 		}
 
 

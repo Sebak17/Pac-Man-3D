@@ -15,12 +15,11 @@ ToDo
 - [X] Add collisions with ghosts and coins
 - [X] Add torches
 - [X] Add sounds
-- [ ] Add text render for HUD
 - [X] Change movement to mouse
 - [ ] Add victory, defeat and menu scenes
 - [ ] Add light sources and update shaders to create darkness
 - [ ] Update and beautify textures of walls and floors
-- [ ] Add a mechanism of eating ghosts
+- [X] Add a mechanism of eating ghosts
 - [X] Randomize ghosts and coins spawn
 
 Screenshots

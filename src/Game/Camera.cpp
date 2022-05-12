@@ -199,17 +199,17 @@ namespace Game {
 
 	}
 
-	bool Camera::checkGhostsCollisions()
+	Entity::Ghost* Camera::checkGhostsCollisions()
 	{
 		for (auto& ghost : mapData.ghosts)
 		{
 			float d = distance(this->position, ghost.curPosition);
 			if (d < 1.1f) {
-				return true;
+				return &ghost;
 			}
 		}
 
-		return false;
+		return NULL;
 	}
 
 	bool Camera::checkCoinsCollisions()
@@ -223,6 +223,24 @@ namespace Game {
 			float d = distance(this->position, coin.position);
 			if (d < 1.0f) {
 				coin.collected = true;
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	bool Camera::checkSpecialCoinsCollisions()
+	{
+		for (auto& specialCoin : mapData.specialCoins)
+		{
+			if (specialCoin.collected) {
+				continue;
+			}
+
+			float d = distance(this->position, specialCoin.position);
+			if (d < 1.0f) {
+				specialCoin.collected = true;
 				return true;
 			}
 		}

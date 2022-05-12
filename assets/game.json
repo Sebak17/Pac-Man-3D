@@ -5,6 +5,7 @@
 	},
 	"ghosts": 4,
 	"coins": 10,
+	"special_coins": 2,
 	"map": {
 		"size": {
 			"x": 10,

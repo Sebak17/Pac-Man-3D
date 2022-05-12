@@ -2,10 +2,11 @@
 
 namespace Game {
 
-	HudManager::HudManager(Game::Player& player, GLuint textureLife, GLuint textureShield) : player(player)
+	HudManager::HudManager(Game::Player& player, GLuint textureLife, GLuint textureShield, GLuint textureSword) : player(player)
 	{
 		this->textureLife = textureLife;
 		this->textureShield = textureShield;
+		this->textureSword = textureSword;
 	}
 
 	HudManager::~HudManager()
@@ -59,6 +60,28 @@ namespace Game {
 			glVertexAttribPointer(shaderProgram->a("texCoord"), 2, GL_FLOAT, false, 0, LifeInternal::texCoords);
 
 			glActiveTexture(GL_TEXTURE0); glBindTexture(GL_TEXTURE_2D, textureShield);
+			glUniform1i(shaderProgram->u("tex"), 0);
+
+			glDrawArrays(GL_TRIANGLES, 0, LifeInternal::vertexCount);
+
+			glDisableVertexAttribArray(shaderProgram->a("vertex"));
+		}
+
+		if (player.isAttackMode()) {
+			glm::mat4 M = glm::translate(glm::mat4(1.0f), glm::vec3(0.875f, 0.3f, 0.0f));
+
+			M = glm::scale(M, glm::vec3(0.05f, 0.05f, 0.05f));
+			M = glm::rotate(M, PI, glm::vec3(0.0f, 0.0f, 1.0f));
+
+			glUniformMatrix4fv(shaderProgram->u("M"), 1, false, glm::value_ptr(M));
+
+			glEnableVertexAttribArray(shaderProgram->a("vertex"));
+			glVertexAttribPointer(shaderProgram->a("vertex"), 4, GL_FLOAT, false, 0, LifeInternal::vertices);
+
+			glEnableVertexAttribArray(shaderProgram->a("texCoord"));
+			glVertexAttribPointer(shaderProgram->a("texCoord"), 2, GL_FLOAT, false, 0, LifeInternal::texCoords);
+
+			glActiveTexture(GL_TEXTURE0); glBindTexture(GL_TEXTURE_2D, textureSword);
 			glUniform1i(shaderProgram->u("tex"), 0);
 
 			glDrawArrays(GL_TRIANGLES, 0, LifeInternal::vertexCount);

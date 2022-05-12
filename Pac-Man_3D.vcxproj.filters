@@ -105,6 +105,9 @@
     <ClInclude Include="src\Game\SceneManager.h">
       <Filter>Pliki nagłówkowe\Game</Filter>
     </ClInclude>
+    <ClInclude Include="src\Entity\SpecialCoin.h">
+      <Filter>Pliki nagłówkowe\Entity</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Game\Camera.cpp">
@@ -160,6 +163,9 @@
     </ClCompile>
     <ClCompile Include="src\Game\SceneManager.cpp">
       <Filter>Pliki źródłowe\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entity\SpecialCoin.cpp">
+      <Filter>Pliki źródłowe\Entity</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

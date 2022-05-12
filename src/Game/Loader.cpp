@@ -19,6 +19,7 @@ namespace Game {
 
 		textureLife = this->readTexture("assets/textures/life.png");
 		textureShield = this->readTexture("assets/textures/shield.png");
+		textureSword = this->readTexture("assets/textures/sword.png");
 	}
 
 	void Loader::destroyTextures()
@@ -28,6 +29,7 @@ namespace Game {
 		glDeleteTextures(2, &textureTorch);
 		glDeleteTextures(3, &textureLife);
 		glDeleteTextures(4, &textureShield);
+		glDeleteTextures(5, &textureSword);
 	}
 
 	Game::MapData Loader::loadMap(const char* filename)
@@ -137,6 +139,10 @@ namespace Game {
 		mapData.coinsAmount = gameData.find("coins").value();
 		// --------------------------------------------------------------
 
+		// ---------------------------[ COINS ]--------------------------
+		mapData.specialCoinsAmount = gameData.find("special_coins").value();
+		// --------------------------------------------------------------
+
 		this->generateMap(mapData);
 
 		return mapData;
@@ -174,6 +180,15 @@ namespace Game {
 
 			Entity::Ghost ghost(pos, mapManager);
 			mapData.ghosts.push_back(ghost);
+
+			availableSlots.erase(std::remove(availableSlots.begin(), availableSlots.end(), pos), availableSlots.end());
+		}
+
+		for (int i = 0; i < mapData.specialCoinsAmount; i++) {
+			glm::vec3 pos = availableSlots[rand() % availableSlots.size()];
+
+			Entity::SpecialCoin specialCoin(pos);
+			mapData.specialCoins.push_back(specialCoin);
 
 			availableSlots.erase(std::remove(availableSlots.begin(), availableSlots.end(), pos), availableSlots.end());
 		}
