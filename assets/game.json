@@ -624,6 +624,18 @@
 				"z": 9,
 				"direction": "east"
 			}
+		],
+		"torches": [
+			{
+				"x": 0,
+				"z": 1,
+				"direction": "north"
+			},
+			{
+				"x": 0,
+				"z": 9,
+				"direction": "north"
+			}
 		]
 	}
 }
