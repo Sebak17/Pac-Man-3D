@@ -45,7 +45,9 @@ namespace Game {
 	class Loader {
 
 		public:
+			GLuint textureWall, textureFloor, textureTorch;
 			GLuint textureLife, textureShield, textureSword;
+			GLuint textureMenu, textureDefeat, textureVictory;
 
 			Loader(Map::MapManager& mapManager);
 			virtual ~Loader();
@@ -60,8 +62,6 @@ namespace Game {
 
 		private:
 			Map::MapManager& mapManager;
-
-			GLuint textureWall, textureFloor, textureTorch;
 
 			Map::WallDirection getMapElementDirectionFromName(string name);
 	};

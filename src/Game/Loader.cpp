@@ -20,6 +20,10 @@ namespace Game {
 		textureLife = this->readTexture("assets/textures/life.png");
 		textureShield = this->readTexture("assets/textures/shield.png");
 		textureSword = this->readTexture("assets/textures/sword.png");
+
+		textureMenu = this->readTexture("assets/textures/bricks.png");
+		textureDefeat = this->readTexture("assets/textures/stone-wall.png");
+		textureVictory = this->readTexture("assets/textures/shield.png");
 	}
 
 	void Loader::destroyTextures()
@@ -27,9 +31,14 @@ namespace Game {
 		glDeleteTextures(1, &textureWall);
 		glDeleteTextures(2, &textureFloor);
 		glDeleteTextures(2, &textureTorch);
+
 		glDeleteTextures(3, &textureLife);
 		glDeleteTextures(4, &textureShield);
 		glDeleteTextures(5, &textureSword);
+
+		glDeleteTextures(6, &textureMenu);
+		glDeleteTextures(7, &textureDefeat);
+		glDeleteTextures(8, &textureVictory);
 	}
 
 	Game::MapData Loader::loadMap(const char* filename)

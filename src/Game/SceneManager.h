@@ -12,7 +12,7 @@ namespace Game {
 	class SceneManager {
 
 		public:
-			SceneManager();
+			SceneManager(GLuint textureMenu, GLuint textureDefeat, GLuint textureVictory);
 			virtual ~SceneManager();
 
 			virtual void renderMenu(ShaderProgram* shaderProgram);
@@ -20,8 +20,18 @@ namespace Game {
 			virtual void renderVictory(ShaderProgram* shaderProgram);
 
 		private:
+			GLuint textureMenu, textureDefeat, textureVictory;
 
+			virtual glm::mat4 getPosition();
+
+			virtual void renderImage(ShaderProgram* shaderProgram, GLuint texture);
 	};
+
+	namespace TextInternal {
+		extern float vertices[];
+		extern float texCoords[];
+		extern unsigned int vertexCount;
+	}
 
 }
 

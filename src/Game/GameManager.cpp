@@ -4,7 +4,7 @@ namespace Game {
 
 	GameManager::GameManager()
 	{
-		this->status = Status::PLAYING;
+		this->status = Status::MENU;
 	}
 
 	GameManager::~GameManager()

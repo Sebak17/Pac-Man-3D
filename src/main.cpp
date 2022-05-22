@@ -91,7 +91,7 @@ void initOpenGLProgram(GLFWwindow* window)
 	camera.loadData();
 
 	hudManager = new Game::HudManager(player, gameLoader.textureLife, gameLoader.textureShield, gameLoader.textureSword);
-	sceneManager = new Game::SceneManager();
+	sceneManager = new Game::SceneManager(gameLoader.textureMenu, gameLoader.textureDefeat, gameLoader.textureVictory);
 }
 
 
