@@ -18,22 +18,7 @@ namespace Entity {
 	{
 		M = this->getPosition(M);
 
-		glUniformMatrix4fv(shaderProgram->u("M"), 1, false, glm::value_ptr(M));
-		glUniform4f(spLambert->u("color"), 1, 1, 1, 1);
-
-		glEnableVertexAttribArray(0);
-		glEnableVertexAttribArray(1);
-		glEnableVertexAttribArray(2);
-
-		glVertexAttribPointer(0, 4, GL_FLOAT, false, 0, GhostVerts.vertCoords);
-		glVertexAttribPointer(1, 4, GL_FLOAT, false, 0, GhostVerts.normalCoords);
-		glVertexAttribPointer(2, 4, GL_FLOAT, false, 0, GhostVerts.texCoords);
-
-		glDrawArrays(GL_TRIANGLES, 0, GhostVerts.numVerts);
-
-		glDisableVertexAttribArray(0);
-		glDisableVertexAttribArray(1);
-		glDisableVertexAttribArray(2);
+		renderObjectWithColor(shaderProgram, M, GhostVerts.vertCoords, GhostVerts.normalCoords, GhostVerts.texCoords, GhostVerts.numVerts, 1.0f, 1.0f, 1.0f);
 	}
 
 	void Ghost::move(float deltaTime)

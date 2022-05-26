@@ -5,6 +5,7 @@
 
 #include "../constants.h"
 #include "../shaderprogram.h"
+#include "../RenderHelper.h"
 
 namespace Map {
 

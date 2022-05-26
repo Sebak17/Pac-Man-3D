@@ -5,6 +5,7 @@
 #include "../constants.h"
 #include "../shaderprogram.h"
 #include "Player.h"
+#include "../RenderHelper.h"
 
 namespace Game {
 
@@ -25,7 +26,7 @@ namespace Game {
 
 	};
 
-	namespace LifeInternal {
+	namespace ItemInternal {
 		extern float vertices[];
 		extern float texCoords[];
 		extern unsigned int vertexCount;

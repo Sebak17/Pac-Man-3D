@@ -7,6 +7,7 @@
 #include "../shaderprogram.h"
 #include "../Model/ModelTorch.h"
 #include "TileWall.h"
+#include "../RenderHelper.h"
 
 namespace Map {
 

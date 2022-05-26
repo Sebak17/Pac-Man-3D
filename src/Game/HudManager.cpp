@@ -27,21 +27,7 @@ namespace Game {
 				glm::mat4 M_life = glm::scale(M, glm::vec3(0.032f, 0.032f, 0.032f));
 				M_life = glm::rotate(M_life, PI, glm::vec3(0.0f, 0.0f, 1.0f));
 
-				glUniformMatrix4fv(shaderProgram->u("M"), 1, false, glm::value_ptr(M_life));
-
-				glEnableVertexAttribArray(shaderProgram->a("vertex"));
-				glVertexAttribPointer(shaderProgram->a("vertex"), 4, GL_FLOAT, false, 0, LifeInternal::vertices);
-
-				glEnableVertexAttribArray(shaderProgram->a("texCoord"));
-				glVertexAttribPointer(shaderProgram->a("texCoord"), 2, GL_FLOAT, false, 0, LifeInternal::texCoords);
-
-				glActiveTexture(GL_TEXTURE0); glBindTexture(GL_TEXTURE_2D, textureLife);
-				glUniform1i(shaderProgram->u("tex"), 0);
-
-				glDrawArrays(GL_TRIANGLES, 0, LifeInternal::vertexCount);
-
-				glDisableVertexAttribArray(shaderProgram->a("vertex"));
-
+				renderObjectWithSingleTexture(shaderProgram, M_life, ItemInternal::vertices, ItemInternal::texCoords, ItemInternal::vertexCount, textureLife);
 			}
 		}
 
@@ -51,20 +37,7 @@ namespace Game {
 			M = glm::scale(M, glm::vec3(0.06f, 0.06f, 0.06f));
 			M = glm::rotate(M, PI, glm::vec3(0.0f, 0.0f, 1.0f));
 
-			glUniformMatrix4fv(shaderProgram->u("M"), 1, false, glm::value_ptr(M));
-
-			glEnableVertexAttribArray(shaderProgram->a("vertex"));
-			glVertexAttribPointer(shaderProgram->a("vertex"), 4, GL_FLOAT, false, 0, LifeInternal::vertices);
-
-			glEnableVertexAttribArray(shaderProgram->a("texCoord"));
-			glVertexAttribPointer(shaderProgram->a("texCoord"), 2, GL_FLOAT, false, 0, LifeInternal::texCoords);
-
-			glActiveTexture(GL_TEXTURE0); glBindTexture(GL_TEXTURE_2D, textureShield);
-			glUniform1i(shaderProgram->u("tex"), 0);
-
-			glDrawArrays(GL_TRIANGLES, 0, LifeInternal::vertexCount);
-
-			glDisableVertexAttribArray(shaderProgram->a("vertex"));
+			renderObjectWithSingleTexture(shaderProgram, M, ItemInternal::vertices, ItemInternal::texCoords, ItemInternal::vertexCount, textureShield);
 		}
 
 		if (player.isAttackMode()) {
@@ -73,26 +46,13 @@ namespace Game {
 			M = glm::scale(M, glm::vec3(0.05f, 0.05f, 0.05f));
 			M = glm::rotate(M, PI, glm::vec3(0.0f, 0.0f, 1.0f));
 
-			glUniformMatrix4fv(shaderProgram->u("M"), 1, false, glm::value_ptr(M));
-
-			glEnableVertexAttribArray(shaderProgram->a("vertex"));
-			glVertexAttribPointer(shaderProgram->a("vertex"), 4, GL_FLOAT, false, 0, LifeInternal::vertices);
-
-			glEnableVertexAttribArray(shaderProgram->a("texCoord"));
-			glVertexAttribPointer(shaderProgram->a("texCoord"), 2, GL_FLOAT, false, 0, LifeInternal::texCoords);
-
-			glActiveTexture(GL_TEXTURE0); glBindTexture(GL_TEXTURE_2D, textureSword);
-			glUniform1i(shaderProgram->u("tex"), 0);
-
-			glDrawArrays(GL_TRIANGLES, 0, LifeInternal::vertexCount);
-
-			glDisableVertexAttribArray(shaderProgram->a("vertex"));
+			renderObjectWithSingleTexture(shaderProgram, M, ItemInternal::vertices, ItemInternal::texCoords, ItemInternal::vertexCount, textureSword);
 		}
 
 		glEnable(GL_DEPTH_TEST);
 	}
 
-	namespace LifeInternal {
+	namespace ItemInternal {
 
 		unsigned int vertexCount = 6;
 

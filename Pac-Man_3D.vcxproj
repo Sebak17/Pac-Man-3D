@@ -38,6 +38,7 @@
     <ClInclude Include="src\Model\ModelCoin.h" />
     <ClInclude Include="src\Model\ModelGhost.h" />
     <ClInclude Include="src\Model\ModelTorch.h" />
+    <ClInclude Include="src\RenderHelper.h" />
     <ClInclude Include="src\shaderprogram.h" />
   </ItemGroup>
   <ItemGroup>
@@ -59,6 +60,7 @@
     <ClCompile Include="src\Model\ModelCoin.cpp" />
     <ClCompile Include="src\Model\ModelGhost.cpp" />
     <ClCompile Include="src\Model\ModelTorch.cpp" />
+    <ClCompile Include="src\RenderHelper.cpp" />
     <ClCompile Include="src\shaderprogram.cpp" />
   </ItemGroup>
   <ItemGroup>

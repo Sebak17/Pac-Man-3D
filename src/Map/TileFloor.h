@@ -4,6 +4,7 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include "../shaderprogram.h"
+#include "../RenderHelper.h"
 
 namespace Map {
 

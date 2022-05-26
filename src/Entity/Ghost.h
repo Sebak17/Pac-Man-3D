@@ -9,6 +9,7 @@
 #include "../shaderprogram.h"
 #include "../Model/ModelGhost.h"
 #include "../Map/MapManager.h"
+#include "../RenderHelper.h"
 
 #define SPEED_ROTATE 100
 #define SPEED_MOVE   1.5

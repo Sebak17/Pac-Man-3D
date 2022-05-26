@@ -108,6 +108,9 @@
     <ClInclude Include="src\Entity\SpecialCoin.h">
       <Filter>Pliki nagłówkowe\Entity</Filter>
     </ClInclude>
+    <ClInclude Include="src\RenderHelper.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Game\Camera.cpp">
@@ -166,6 +169,9 @@
     </ClCompile>
     <ClCompile Include="src\Entity\SpecialCoin.cpp">
       <Filter>Pliki źródłowe\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RenderHelper.cpp">
+      <Filter>Pliki źródłowe</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

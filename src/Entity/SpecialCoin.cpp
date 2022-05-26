@@ -21,22 +21,7 @@ namespace Entity {
 
 		M = this->getPosition(M);
 
-		glUniformMatrix4fv(shaderProgram->u("M"), 1, false, glm::value_ptr(M));
-		glUniform4f(spLambert->u("color"), 0.0f, 0.0f, 1.0f, 1);
-
-		glEnableVertexAttribArray(0);
-		glEnableVertexAttribArray(1);
-		glEnableVertexAttribArray(2);
-
-		glVertexAttribPointer(0, 4, GL_FLOAT, false, 0, CoinVerts.vertCoords);
-		glVertexAttribPointer(1, 4, GL_FLOAT, false, 0, CoinVerts.normalCoords);
-		glVertexAttribPointer(2, 4, GL_FLOAT, false, 0, CoinVerts.texCoords);
-
-		glDrawArrays(GL_TRIANGLES, 0, CoinVerts.numVerts);
-
-		glDisableVertexAttribArray(0);
-		glDisableVertexAttribArray(1);
-		glDisableVertexAttribArray(2);
+		renderObjectWithColor(shaderProgram, M, CoinVerts.vertCoords, CoinVerts.normalCoords, CoinVerts.texCoords, CoinVerts.numVerts, 0.0f, 0.0f, 1.0f);
 	}
 
 	void SpecialCoin::update(float deltaTime)

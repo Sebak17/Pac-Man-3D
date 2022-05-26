@@ -6,6 +6,7 @@
 #include "../constants.h"
 #include "../shaderprogram.h"
 #include "../Model/ModelCoin.h"
+#include "../RenderHelper.h"
 
 namespace Entity {
 
