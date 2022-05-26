@@ -120,6 +120,10 @@ void update(float deltaTime)
 			coin.update(deltaTime);
 		}
 
+		for (auto& specialCoin : mapData.specialCoins) {
+			specialCoin.update(deltaTime);
+		}
+
 		Entity::Ghost* ghost = camera.checkGhostsCollisions();
 		if (ghost != NULL) {
 			if (player.isAttackMode()) {
@@ -225,7 +229,7 @@ void drawScene(GLFWwindow* window)
 
 		if (gameManager.status == Game::Status::DEFEAT)
 		{
-			sceneManager->renderVictory(spHud);
+			sceneManager->renderDefeat(spHud);
 		}
 
 		if (gameManager.status == Game::Status::VICTORY)

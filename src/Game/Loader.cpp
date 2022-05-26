@@ -21,9 +21,9 @@ namespace Game {
 		textureShield = this->readTexture("assets/textures/shield.png");
 		textureSword = this->readTexture("assets/textures/sword.png");
 
-		textureMenu = this->readTexture("assets/textures/bricks.png");
-		textureDefeat = this->readTexture("assets/textures/stone-wall.png");
-		textureVictory = this->readTexture("assets/textures/shield.png");
+		textureMenu = this->readTexture("assets/textures/menu.png");
+		textureDefeat = this->readTexture("assets/textures/defeat.png");
+		textureVictory = this->readTexture("assets/textures/victory.png");
 	}
 
 	void Loader::destroyTextures()

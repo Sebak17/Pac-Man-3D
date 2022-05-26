@@ -16,7 +16,7 @@ ToDo
 - [X] Add torches
 - [X] Add sounds
 - [X] Change movement to mouse
-- [ ] Add victory, defeat and menu scenes
+- [X] Add victory, defeat and menu scenes
 - [ ] Add light sources and update shaders to create darkness
 - [ ] Update and beautify textures of walls and floors
 - [X] Add a mechanism of eating ghosts
