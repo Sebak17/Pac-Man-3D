@@ -24,10 +24,6 @@ namespace Map {
 	class TileWall {
 
 		public:
-			int vertexCount;
-			float* vertices;
-			float* texCoords;
-
 			glm::vec3 position;
 			WallDirection wallDirection;
 
@@ -43,6 +39,7 @@ namespace Map {
 
 	namespace TileWallInternal {
 		extern float vertices[];
+		extern float normalCoords[];
 		extern float texCoords[];
 		extern unsigned int vertexCount;
 	}

@@ -14,10 +14,6 @@ namespace Map {
 	class TileFloor {
 
 		public:
-			int vertexCount;
-			float* vertices;
-			float* texCoords;
-
 			TileFloor(GLuint texture, glm::vec3 position);
 			virtual ~TileFloor();
 
@@ -31,6 +27,7 @@ namespace Map {
 
 	namespace TileFloorInternal {
 		extern float vertices[];
+		extern float normalCoords[];
 		extern float texCoords[];
 		extern unsigned int vertexCount;
 	}

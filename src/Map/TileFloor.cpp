@@ -7,9 +7,6 @@ namespace Map {
 		this->texture = texture;
 		this->position = position;
 
-		vertices = TileFloorInternal::vertices;
-		texCoords = TileFloorInternal::texCoords;
-		vertexCount = TileFloorInternal::vertexCount;
 	}
 
 	TileFloor::~TileFloor()
@@ -20,7 +17,7 @@ namespace Map {
 	{
 		M = glm::translate(M, this->position);
 
-		renderObjectWithSingleTexture(shaderProgram, M, vertices, texCoords, vertexCount, texture);
+		renderObjectWithSingleTexture(shaderProgram, M, TileFloorInternal::vertices, TileFloorInternal::texCoords, TileFloorInternal::normalCoords, TileFloorInternal::vertexCount, texture);
 	}
 
 
@@ -36,6 +33,16 @@ namespace Map {
 			1.0f,-1.0f,-1.0f,1.0f,
 			-1.0f,-1.0f,1.0f,1.0f,
 			1.0f,-1.0f,1.0f,1.0f,
+		};
+
+		float normalCoords[] = {
+			0.0f,1.0f,0.0f,0.0f,
+			0.0f,1.0f,0.0f,0.0f,
+			0.0f,1.0f,0.0f,0.0f,
+
+			0.0f,1.0f,0.0f,0.0f,
+			0.0f,1.0f,0.0f,0.0f,
+			0.0f,1.0f,0.0f,0.0f,
 		};
 
 		float texCoords[] = {

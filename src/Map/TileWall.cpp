@@ -7,10 +7,6 @@ namespace Map {
 		this->texture = texture;
 		this->position = position;
 		this->wallDirection = wallDirection;
-
-		vertices = TileWallInternal::vertices;
-		texCoords = TileWallInternal::texCoords;
-		vertexCount = TileWallInternal::vertexCount;
 	}
 
 	TileWall::~TileWall()
@@ -22,7 +18,7 @@ namespace Map {
 		M = glm::translate(M, this->position);
 		M = glm::rotate(M, wallDirection * 90 * PI / 180.0f, glm::vec3(0.0f, -1.0f, 0.0f));
 
-		renderObjectWithSingleTexture(shaderProgram, M, vertices, texCoords, vertexCount, texture);
+		renderObjectWithSingleTexture(shaderProgram, M, TileWallInternal::vertices, TileWallInternal::texCoords, TileWallInternal::normalCoords, TileWallInternal::vertexCount, texture);
 	}
 
 
@@ -54,6 +50,32 @@ namespace Map {
 			-1.0f,-1.0f,-1.0f,1.0f, // L-BL
 			-1.0f,1.0f,-0.9f,1.0f,  // L-TR
 			-1.0f,-1.0f,-0.9f,1.0f, // L-BR
+		};
+
+		float normalCoords[] = {
+			0.0f,0.0f,0.9f,0.0f,
+			0.0f,0.0f,0.9f,0.0f,
+			0.0f,0.0f,0.9f,0.0f,
+
+			0.0f,0.0f,0.9f,0.0f,
+			0.0f,0.0f,0.9f,0.0f,
+			0.0f,0.0f,0.9f,0.0f,
+
+			1.0f,0.0f,0.0f,0.0f,	// R-BR
+			1.0f,0.0f,0.0f,0.0f,	// R-TL
+			1.0f,0.0f,0.0f,0.0f,	// R-TR
+
+			1.0f,0.0f,0.0f,0.0f,	// R-BR
+			1.0f,0.0f,0.0f,0.0f,	// R-TL
+			1.0f,0.0f,0.0f,0.0f,	// R-BL
+
+			-1.0f,0.0f,0.0f,0.0f,	// L-BL
+			-1.0f,0.0f,0.0f,0.0f,	// L-TR
+			-1.0f,0.0f,0.0f,0.0f,	// L-TL
+
+			-1.0f,0.0f,0.0f,0.0f,	// L-BL
+			-1.0f,0.0f,0.0f,0.0f,	// L-TR
+			-1.0f,0.0f,0.0f,0.0f,	// L-BR
 		};
 
 		float texCoords[] = {

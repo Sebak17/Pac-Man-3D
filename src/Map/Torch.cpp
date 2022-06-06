@@ -24,7 +24,7 @@ namespace Map {
 		M = glm::translate(M, glm::vec3(0.0f, -0.15f, -1.5f));
 
 
-		renderObjectWithSingleTexture(shaderProgram, M, TorchVerts.vertCoords, TorchVerts.texCoords, TorchVerts.numVerts, texture);
+		renderObjectWithSingleTexture(shaderProgram, M, TorchVerts.vertCoords, TorchVerts.texCoords, TorchVerts.normalCoords, TorchVerts.numVerts, texture);
 	}
 
 }

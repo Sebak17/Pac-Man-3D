@@ -100,10 +100,10 @@ namespace Game {
 				Map::TileFloor floor(textureFloor, glm::vec3(x * 2.0f, 0.0f, z * 2.0f));
 				mapManager.floors.push_back(floor);
 
-				/*
+				
 				Map::TileFloor ceiling(textureFloor, glm::vec3(x * 2.0f, 2.0f, z * 2.0f));
 				mapManager.floors.push_back(ceiling);
-				*/
+				
 			}
 		}
 

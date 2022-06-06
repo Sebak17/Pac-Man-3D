@@ -19,6 +19,7 @@
 #include "Map/MapManager.h"
 
 #include <ft2build.h>
+#include <stdio.h>
 
 irrklang::ISoundEngine* engine;
 
@@ -197,6 +198,18 @@ void drawScene(GLFWwindow* window)
 		spMap->use();
 		glUniformMatrix4fv(spMap->u("P"), 1, false, glm::value_ptr(P));
 		glUniformMatrix4fv(spMap->u("V"), 1, false, glm::value_ptr(V));
+
+
+		int iTorch = 0;
+		for (auto& torch : mapManager.torches) {
+			std::string n = "torch[";
+			n += std::to_string(iTorch);
+			n += "]";
+			glUniform4fv(spMap->u(n.c_str()), 1, glm::value_ptr(glm::vec4(torch.position, 1.0f)));
+			iTorch++;
+		}
+
+
 
 		for (auto& floor : mapManager.floors) {
 			floor.draw(spMap, M);

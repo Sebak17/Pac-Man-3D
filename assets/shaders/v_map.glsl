@@ -4,23 +4,32 @@ uniform mat4 P;
 uniform mat4 V;
 uniform mat4 M;
 
-uniform vec3 lights;
+uniform vec4 torch[3];
 
-layout (location=0) in vec4 vertex;
-layout (location=2) in vec2 texCoord;
+in vec4 vertex;
+in vec2 texCoord;
+in vec4 normal;
 
 
 out vec2 i_tc;
-out float i_nl;
+out float i_att;
 
-void main(void) {
+void main(void) 
+{
     gl_Position = P * V * M * vertex;
 
-    float d = distance(M * vertex, vec4(0, 0, 0, 1));
+    float d = 9999999;
+    for (int i = 0; i < 3 ; i++)
+    {
+        float dt = distance(M * vertex, torch[i]);
+        if (dt < d) d = dt;
+    }
 
-    float att = -0.25f + (0.01f * d) + (0.002f * d * d);
+
+    float light = -0.25f + (0.01f * d) + (0.00025f * d * d);
+
+
 
     i_tc = texCoord;
-    //i_nl = -att;
-    i_nl = 1;
+    i_att = -light;
 }
