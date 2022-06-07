@@ -25,10 +25,7 @@ void main(void)
         if (dt < d) d = dt;
     }
 
-
     float light = -0.25f + (0.01f * d) + (0.00025f * d * d);
-
-
 
     i_tc = texCoord;
     i_att = -light;

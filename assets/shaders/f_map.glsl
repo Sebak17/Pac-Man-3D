@@ -2,10 +2,10 @@
 
 uniform sampler2D tex0;
 
-out vec4 pixelColor;
-
 in vec2 i_tc;
 in float i_att;
+
+out vec4 pixelColor;
 
 void main(void) 
 {
