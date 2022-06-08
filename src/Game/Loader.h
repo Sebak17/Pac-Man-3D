@@ -45,7 +45,7 @@ namespace Game {
 	class Loader {
 
 		public:
-			GLuint textureWall, textureFloor, textureTorch;
+			GLuint textureWall, textureFloor, textureCeiling, textureTorch;
 			GLuint textureLife, textureShield, textureSword;
 			GLuint textureMenu, textureDefeat, textureVictory;
 

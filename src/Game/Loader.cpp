@@ -13,8 +13,9 @@ namespace Game {
 
 	void Loader::loadTextures()
 	{
-		textureWall = this->readTexture("assets/textures/bricks.png");
-		textureFloor = this->readTexture("assets/textures/stone-wall.png");
+		textureWall = this->readTexture("assets/textures/wall.png");
+		textureFloor = this->readTexture("assets/textures/floor.png");
+		textureCeiling = this->readTexture("assets/textures/ceiling.png");
 		textureTorch = this->readTexture("assets/textures/torch.png");
 
 		textureLife = this->readTexture("assets/textures/life.png");
@@ -30,15 +31,16 @@ namespace Game {
 	{
 		glDeleteTextures(1, &textureWall);
 		glDeleteTextures(2, &textureFloor);
-		glDeleteTextures(2, &textureTorch);
+		glDeleteTextures(3, &textureCeiling);
+		glDeleteTextures(4, &textureTorch);
 
-		glDeleteTextures(3, &textureLife);
-		glDeleteTextures(4, &textureShield);
-		glDeleteTextures(5, &textureSword);
+		glDeleteTextures(5, &textureLife);
+		glDeleteTextures(6, &textureShield);
+		glDeleteTextures(7, &textureSword);
 
-		glDeleteTextures(6, &textureMenu);
-		glDeleteTextures(7, &textureDefeat);
-		glDeleteTextures(8, &textureVictory);
+		glDeleteTextures(8, &textureMenu);
+		glDeleteTextures(9, &textureDefeat);
+		glDeleteTextures(10, &textureVictory);
 	}
 
 	Game::MapData Loader::loadMap(const char* filename)
@@ -101,7 +103,7 @@ namespace Game {
 				mapManager.floors.push_back(floor);
 
 				
-				Map::TileFloor ceiling(textureFloor, glm::vec3(x * 2.0f, 2.0f, z * 2.0f));
+				Map::TileFloor ceiling(textureCeiling, glm::vec3(x * 2.0f, 2.0f, z * 2.0f));
 				mapManager.floors.push_back(ceiling);
 				
 			}
