@@ -12,7 +12,7 @@
 #include "../RenderHelper.h"
 
 #define SPEED_ROTATE 100
-#define SPEED_MOVE   1.5
+#define SPEED_MOVE   5.0
 
 namespace Entity {
 
