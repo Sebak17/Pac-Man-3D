@@ -699,7 +699,12 @@
 		"torches": [
 			{
 				"x": 0,
-				"z": 1,
+				"z": 2,
+				"direction": "north"
+			},
+			{
+				"x": 0,
+				"z": 11,
 				"direction": "north"
 			},
 			{
@@ -708,8 +713,8 @@
 				"direction": "north"
 			},
 			{
-				"x": 0,
-				"z": 9,
+				"x": 10,
+				"z": 12,
 				"direction": "north"
 			}
 		]

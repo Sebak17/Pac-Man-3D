@@ -4,7 +4,7 @@ uniform mat4 P;
 uniform mat4 V;
 uniform mat4 M;
 
-uniform vec4 torch[3];
+uniform vec4 torch[4];
 
 in vec4 vertex;
 in vec2 texCoord;
@@ -19,7 +19,7 @@ void main(void)
     gl_Position = P * V * M * vertex;
 
     float d = 9999999;
-    for (int i = 0; i < 3 ; i++)
+    for (int i = 0; i < 4 ; i++)
     {
         float dt = distance(M * vertex, torch[i]);
         if (dt < d) d = dt;
