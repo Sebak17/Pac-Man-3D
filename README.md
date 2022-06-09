@@ -17,8 +17,8 @@ ToDo
 - [X] Add sounds
 - [X] Change movement to mouse
 - [X] Add victory, defeat and menu scenes
-- [ ] Add light sources and update shaders to create darkness
-- [ ] Update and beautify textures of walls and floors
+- [X] Add light sources and update shaders to create darkness
+- [X] Update and beautify textures of walls and floors
 - [X] Add a mechanism of eating ghosts
 - [X] Randomize ghosts and coins spawn
 
@@ -26,7 +26,13 @@ Screenshots
 ----------
 
 ### Version 2022-04-10
-![SS_V2022-04-10](https://i.imgur.com/jz99ARk.jpeg)
+![SS_V2022-04-10](docs/2022-04-10.jpg)
 
 ### Version 2022-05-10
-![SS_V2022-05-10](https://i.imgur.com/9NAV8Qs.png)
+![SS_V2022-05-10](docs/2022-05-10.png)
+
+### Version 2022-06-07
+![SS_V2022-06-07](docs/2022-06-07.png)
+
+### Version 2022-06-08
+![SS_V2022-06-08](docs/2022-06-08.png)
