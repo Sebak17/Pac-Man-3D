@@ -14,11 +14,13 @@ void renderObjectWithSingleTexture(ShaderProgram* shaderProgram, glm::mat4 M, fl
 	glVertexAttribPointer(shaderProgram->a("texCoord"), 2, GL_FLOAT, false, 0, texCoords);
 
 	glActiveTexture(GL_TEXTURE0); glBindTexture(GL_TEXTURE_2D, texture);
-	glUniform1i(shaderProgram->u("tex"), 0);
+	glUniform1i(shaderProgram->u("tex0"), 0);
 
 	glDrawArrays(GL_TRIANGLES, 0, vertexCount);
 
 	glDisableVertexAttribArray(shaderProgram->a("vertex"));
+	glDisableVertexAttribArray(shaderProgram->a("normal"));
+	glDisableVertexAttribArray(shaderProgram->a("texCoord"));
 }
 
 void renderObjectWithSingleTexture(ShaderProgram* shaderProgram, glm::mat4 M, float* vertCoords, float* texCoords, int vertexCount, GLuint texture)
@@ -32,11 +34,12 @@ void renderObjectWithSingleTexture(ShaderProgram* shaderProgram, glm::mat4 M, fl
 	glVertexAttribPointer(shaderProgram->a("texCoord"), 2, GL_FLOAT, false, 0, texCoords);
 
 	glActiveTexture(GL_TEXTURE0); glBindTexture(GL_TEXTURE_2D, texture);
-	glUniform1i(shaderProgram->u("tex"), 0);
+	glUniform1i(shaderProgram->u("tex0"), 0);
 
 	glDrawArrays(GL_TRIANGLES, 0, vertexCount);
 
 	glDisableVertexAttribArray(shaderProgram->a("vertex"));
+	glDisableVertexAttribArray(shaderProgram->a("texCoord"));
 }
 
 void renderObjectWithColor(ShaderProgram* shaderProgram, glm::mat4 M, float* vertCoords, float* normalCoords, float* texCoords, int vertexCount, float colorRed, float colorGreen, float colorBlue)
